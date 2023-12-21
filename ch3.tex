@@ -1,0 +1,581 @@
+\section{Conditional Probability and Independence}
+\subsection{Conditional probabilities}
+\begin{bdef}{Conditional probability}\label{conpro}
+    For events $E$ and $F$, we denote the probability that event $E$ occurs \emph{given that $F$ has occurred} as \[
+        P(E \given F).    
+    \] If $P(F) > 0$, then \[
+        P(E \given F) = \frac{P(EF)}{P(F)}.    
+    \]
+\end{bdef}
+\begin{changebar}
+\begin{example}
+    Joe is 80\% certain that his missing key is in one of the two pockets of his hanging jacket; he is 40\% certain that it is in the left-hand pocket and 40\% certain that it is in the right-hand pocket. If a search of the left-hand pocket does not find the key, what is the conditional probability that it is in the other pocket?
+\end{example}
+\begin{solution}
+    Let $L$ be the event where the key is found in the left-hand pocket and $R$ the event where it is in the right-hand pocket. Then by \nameref{conpro}, \[
+        \begin{aligned}
+            P(R \given L^c) &= \frac{P(RL^c)}{P(L^c)} \\
+            &= \frac{P(R)}{1-P(L)} = \frac{40\%}{60\%} = \frac{2}{3}.
+        \end{aligned}
+    \]
+\end{solution}
+\end{changebar}
+
+\begin{changebar}
+\begin{example}
+    A coin is flipped twice. Assuming that the coin is fair (i.e. all flips are equally likely), what is the conditional probability that both flips land on heads, given that \begin{enumerate}[label=(\alph*)]
+        \item the first flip lands on heads?
+        \item at least one flip lands on heads?
+    \end{enumerate}
+\end{example}
+\begin{solution}
+    Let $B = \left\{ (H, H) \right\}$ be the event that both flips land on heads, $F = \left\{ (H, H), (H, T) \right\}$ be the event that the first flip lands on heads, and $A = \left\{ (H, H), (H, T), (T, H) \right\}$ be the event that at least one flip lands on heads.  
+    \begin{enumerate}[label=(\alph*)]
+        \item \[
+            \begin{aligned}
+                P(B \given F) &= \frac{P(BF)}{P(F)} \\
+                &= \frac{P(\left\{ H, H \right\})}{P(\left\{ (H, H), (H, T) \right\})} \\
+                &= \frac{1/4}{2/4} = \frac{1}{2}.
+            \end{aligned}    
+        \]
+        \item \[
+            \begin{aligned}
+                P(B \given A) &= \frac{P(BA)}{A} \\
+                &= \frac{P(\left\{ (H, H) \right\})}{P(\left\{ (H, H), (H, T), (T, H) \right\})} \\
+                &= \frac{1/4}{3/4} = \frac{1}{3}.
+            \end{aligned}    
+        \]
+    \end{enumerate}
+\end{solution}
+\end{changebar}
+
+If each outcome of a finite sample space $S$ is equally likely, then if the outcome lies in a subset $F \subset S$, it is often convenient to compute conditional probabilities $P(E \given F)$ using $F$ as the sample space, as then all outcomes in $F$ are also equally likely, allowing us to avoid using the formula from \nameref{conpro} directly. \autoref{bridgeex} illustrates this technique.
+
+\begin{changebar}
+\begin{example}\label{bridgeex}
+    In the card game bridge, the 52 cards are dealt equally to 4 players, labeled East, West, North, and South. If North and South have a total of 8 spades among them, what is the probability that East has 3 of the remaining 5 spades?
+\end{example}
+\begin{solution}
+    We can approach this problem by working with the reduced sample space. That is, given that North and South have a total of 8 spades among their 26 cards, there remain 26 cards to be distributed between East and West, exactly 5 of which are spades. Since each distribution is equally likely, then the conditional probability that East will have exactly 3 spades within their 13 cards is \[
+        \frac{{5 \choose 3}{21 \choose 10}}{{26 \choose 13}} \approx 0.339.    
+    \] 
+\end{solution}
+\end{changebar}
+
+\begin{bdef}{Probability of the intersection of two events}\label{probint}
+    We can manipulate \nameref{conpro} by multiplying both sides by $P(F)$ to obtain \[
+        P(EF) = P(F)P(E \given F).    
+    \]
+    In other words, the probability that both $E$ and $F$ will occur is given by the probability that $F$ occurs multiplied by the probability that $E$ occurs given that $F$ has occurred. Note that $P(EF) = P(FE)$, so \[
+        P(EF) = P(FE) = P(F)P(E \given F) = P(E)P(F \given E)    
+    \]
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        Celine is undecided as to whether to take a French course or a chemistry course. She estimates that her probability of receiving an A in her chosen course would be $\frac{1}{2}$ if she took French and $\frac{2}{3}$ if she took chemistry. If Celine decides to base her decision on the flip of a fair coin, what is the probability that she gets an $A$ in chemistry?
+    \end{example}
+    \begin{solution}
+        Let $C$ be the event that Celine takes chemistry and $A$ be the event that she receives an A. Then, by \nameref{probint}, the desired probability is \[
+            \begin{aligned}
+                P(AC) &= P(C)P(A \given C) \\
+                &= \frac{1}{2}\cdot\frac{2}{3} = \frac{1}{3}.
+            \end{aligned}
+        \]
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        Suppose that an urn contains 8 red balls and 4 white balls. We draw 2 balls from the urn without replacement. \begin{enumerate}[label=(\alph*)]
+            \item If we assume that at each draw, each ball in the urn is equally likely to be chosen, what is the probability that both balls drawn are red?
+            \item Now suppose that the balls have different weights, with each red ball having weight $r$ and each white ball having weight $w$. Suppose that the probability that a given ball in the urn is the next one selected is its weight divided by the sum of the weights of all balls currently in the urn. Now what is the probability that both balls are red?
+        \end{enumerate}
+    \end{example}
+    \begin{solution}\hfill
+        \begin{enumerate}[label=(\alph*)]
+            \item Let $R_1$ and $R_2$ denote the events that the first and second balls drawn are red, respectively. Given that the first ball selected is red, there are 7 remaining red balls and 4 white balls, so $P(R_2 \given R_1) = \frac{7}{11}$. Since $P(R_1)$ is $\frac{8}{12}$, the desired probability is \[
+                \begin{aligned}
+                    P(R_2R_1) &= P(R_1)P(R_2\given R_1) \\
+                    &= \frac{8}{12}\cdot\frac{7}{11} = \frac{14}{33}.
+                \end{aligned}    
+            \] This can naturally also be computed as \[
+                \frac{{8 \choose 2}}{{12 \choose 2}}.    
+            \]
+            \item We again let $R_i$ be the event that the $i$th ball chosen is red and use the formula \[
+                P(R_2R_1) = P(R_1)P(R_2\given R_1).    
+            \] Now, number the red balls, and let $B_i$ for $i = 1, \dots, 8$ be the event that the first ball drawn is red ball number $i$. Then \[
+                P(R_1) = P\left( \bigcup^8_{i=1} B_i \right) = \sum^8_{i=1} P(B_i) = \frac{8r}{8r+4w}.    
+            \] If the first ball is red, then the urn then has 7 red and 4 white balls. Similarly to the above, \[
+                P(R_2 \given R_1) = \frac{7r}{7r+4w}.
+            \] Then \[
+                P(R_2R_1) = \frac{8r}{8r+4w}\cdot\frac{7r}{7r+4w}    
+            \]
+        \end{enumerate}
+    \end{solution}
+\end{changebar}
+
+\begin{bdef}{Multiplication rule}\label{mulrule}
+    For a finite sequence of events $E_1, E_2, \dots, E_n$, \[
+        P(E_1E_2E_3\cdots E_n) = P(E_1)P(E_2\given E_1)P(E_3\given E_1E_2)\cdots P(E_n\given E_1E_2\cdots E_{n-1}).    
+    \] In other words, the probability that all of $E_1, \dots, E_n$ occur is equal to the probability of the first event, multiplied by the probability that the second event occurs given the first event occurs, then multiplied by the probability the third event occurs given the first two occur, and so on.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        An ordinary deck of 52 playing cards is randomly divided into 4 piles of 13 cards each. Compute the probability that each pile has exactly one ace.
+    \end{example}
+    \begin{solution}
+        Let \[
+            \begin{aligned}
+                E_1 &= \left\{ \text{the ace of spades is in any pile} \right\} \\
+                E_2 &= \left\{ \text{the aces of spades and hearts are in different piles} \right\} \\
+                E_3 &= \left\{ \text{the aces of spades, hearts, and diamonds are all in different piles} \right\} \\
+                E_4 &= \left\{ \text{all 4 aces are in different piles} \right\}.
+            \end{aligned}    
+        \] We want to find $P(E_1E_2E_3E_4)$, which by \nameref{mulrule} is equal to \[
+            P(E_1)P(E_2\given E_1)P(E_3 \given E_1E_2)P(E_4 \given E_1E_2E_3).    
+        \] Obviously $P(E_1) = 1$. Then to determine $P(E_2 \given E_1)$, consider the pile containing the ace of spades. Because the remaining 12 cards in that pile are equally likely to be any 12 of the remaining cards, the probability that the ace of hearts is among them is $12/51$, so \[
+            P(E_2 \given E_1) = 1 - \frac{12}{51} = \frac{39}{51}.    
+        \] Then, given that the aces of spades and hearts are in different piles, it follows that the remaining 24 cards of those two piles is equally likely to be any 24 of the remaining 50 cards. Then the probability that the ace of diamonds is among them is $24/50$, so \[
+            P(E_3 \given E_1E_2) = 1 - \frac{24}{50} = \frac{26}{50}.    
+        \] Following the same logic, \[
+            P(E_4 \given E_1E_2E_3) = 1 - \frac{36}{49} = \frac{13}{49}.    
+        \] Then, finally, \[
+            P(E_1E_2E_3E_4) = \frac{39\cdot 26 \cdot 13}{51 \cdot 50 \cdot 49} \approx 10.5\%.    
+        \]
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        Four of the eight teams of the quarterfinal round of the 2016 European Champions League Football tournament were the acknowledged-strong teams Barcelona, Bayern Munich, Real Madrid, and Paris St-Germain. Assuming that the pairings in this round are entirely random, find the probability that none of the strong teams play each other in this round.
+    \end{example}
+    \begin{solution}
+        If we number the strong teams 1 through 4, then let $W_i$ be the event that the $i$th team plays one of the four weak teams, then the desired probability is $P(W_1W_2W_3W_4)$, which by \nameref{mulrule}: \[
+            \begin{aligned}
+                P(W_1W_2W_3W_4) &= P(W_1)P(W_2 \given W_1)P(W_3 \given W_1W_2)P(W_4 \given W_1W_2W_3) \\
+                &= \left(\frac{4}{7}\right)\left(\frac{3}{5}\right)\left(\frac{2}{3}\right)\left( 1 \right) \\
+                &= 8/35.
+            \end{aligned}
+        \]
+    \end{solution}
+\end{changebar}
+\pagebreak
+\subsection{Bayes' formula}
+\begin{bdef}{Probability of an event using a second event}\label{psecond}
+Given two events $E$ and $F$, we can express $E$ as \[
+    E = EF \cup EF^c.    
+\] As $EF$ and $EF^c$ are clearly mutually exclusive, we can use \nameref{pax3} to derive $P(E)$: \[
+    \begin{aligned}
+        P(E) &= P(EF) + P(EF^c) \\
+        &= P(F)P(E \given F) + P(F^c)P(E \given F^c) \\
+        &= P(F)P(E \given F) + \left[ 1 - P(F) \right]P(E \given F^c).
+    \end{aligned}    
+\] This is valuable as it is often difficult to compute the probability of an event directly, but much more straightforward to compute it once we know the result of some second event.
+\end{bdef}
+\begin{bdef}{Bayes' theorem for two events}\label{bayes}
+    Given two events $E$ and $F$, \[
+        P(E \given F) = \frac{P(E)P(F \given E)}{P(F)}.    
+    \] This follows straightforwardly from the note on \nameref{probint}.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}\label{insuranceconditional}
+        An insurance company classifies its customers into two categories: those who are accident-prone and those who are not. Their statistics show that an accident-prone customer will have an accident at some time within the next year with a 40\% probability, while a customer who is not accident-prone will have an accident with a probability of 20\%. Assuming that 30\% of the population is accident-prone: \begin{enumerate}[label=(\alph*)]
+            \item What is the probability that a new policyholder will have an accident within a year of purchasing a policy?
+            \item Suppose that a new policyholder has an accident within a year of purchasing a policy. What is the probability that he or she is accident prone?
+        \end{enumerate}
+    \end{example}
+    \begin{solution}
+        Let $A$ be the event where the customer is accident-prone and $Y$ be the event where they have an accident within the year after purchasing the policy.
+        \begin{enumerate}[label=(\alph*)]
+            \item Using \nameref{psecond}, we can find $P(Y)$ by conditioning on $P(A)$: \[
+                    \begin{aligned}
+                        P(Y) &= P(A)P(Y \given A) + \left[ 1 - P(A) \right]P(Y \given A^c) \\
+                        &= 0.3\cdot 0.4 + 0.7\cdot 0.2 \\
+                        &= 26\%.
+                    \end{aligned}
+                \]
+            \item Using \nameref{bayes} and our answer to part (a), we can find $P(A \given Y)$: \[
+                \begin{aligned}
+                    P(A \given Y) &= \frac{P(A)P(Y \given A)}{P(Y)} \\
+                    &= \frac{0.3 \cdot 0.3}{0.26} = \frac{6}{13}.
+                \end{aligned}
+            \]
+        \end{enumerate}
+    \end{solution}
+\end{changebar}
+\begin{changebar}
+    \begin{example}
+        Consider the following game played with an ordinary deck of 52 playing cards: The cards are shuffled, then turend over one at a time. At any time, the player can guess that the next card to be turned over will be the ace of spaces; if it is, they win. In addition, the player wins if the ace of spades has not yet appeared when only one card remains and no guess has yet been made. What is a good strategy? What is a bad strategy?
+    \end{example}
+    \begin{solution}
+        Actually, every strategy has probability $1/52$ of winning! We can show a stronger version of this result by demonstrating through induction that for an $n$-card deck, of which one card is the ace of spades, the probability of winning is $1/n$, no matter what strategy is employed. \begin{itemize}
+            \item \textbf{Base case}: When $n = 1$, obviously the only card is the ace of spades, so your odds of winning are $1/1 = 1$, no matter what.
+            \item \textbf{Inductive step}: Assume that for some $n > 1$, the odds of winning this game for an $n-1$-card deck are $1/(n-1)$ regardless of strategy. Now fix any strategy, and let $p$ denote the probability that the strategy guesses that the first card is the ace of spades. If it does, then the player's probability of winning is $1/n$. If, however, the strategy does not guess that the first card is the ace of spades, then the probability that the player wins is the probability that the first card is not the ace of spades (that is, $\frac{n-1}{n}$) multiplied by the conditional probability of winning given that the first card is not the ace of spades. However, that latter conditional is equivalent to winning using the same strategy on an $n-1$-card deck, which we have assumed to be $1/(n-1)$. Then the probability of winning given that the strategy did not guess the first card is \[
+                \frac{n-1}{n}\cdot\frac{1}{n-1} = \frac{1}{n}.    
+            \] We can rephrase this using symbols by letting $G$ be the event that the first card is the one guessed and $W$ be the event where the player wins: \[
+                \begin{aligned}
+                    P(W) &= P(G)P(W \given G) + \left[ 1 - P(G) \right]P(W \given G^c) \\
+                    &= p\frac{1}{n} + \left[ 1 - p \right]\frac{1}{n} \\
+                    &= \frac{1}{n}.
+                \end{aligned}    
+            \]
+        \end{itemize} 
+    \end{solution}
+\end{changebar}
+\begin{changebar}
+    \begin{example}
+        While answering a question on a multiple-choice test, a student either knows the answer or guesses. Let $p$ be the probability that the student knows the answer and $1-p$ be the probability that the student guesses. Assume that a student who guesses at the answer will be correct with probability $1/m$, where $m$ is the number of choices on the question. What is the conditional probability that a student knew the answer to a question given that he or she answered it correctly?
+    \end{example}
+    \begin{solution}
+        Let $C$ be the event where the student answers correctly and $K$ be the event where they actually knows the answer. Then by \nameref{bayes}, \[
+            \begin{aligned}
+                P(K \given C) &= \frac{P(K)P(C \given K)}{P(C)} \\
+                &= \frac{p}{P(C)}.
+            \end{aligned}    
+        \] Using \nameref{psecond}, \[
+            \begin{aligned}
+                P(C) &= P(K)P(C \given K) + \left[ 1 - P(K) \right]P(C \given K^c)    \\
+                &= p + \frac{1-p}{m}.
+            \end{aligned}
+        \] Then \[
+            \begin{aligned}
+                P(K \given C) &= \frac{p}{P(C)} \\
+                &= \frac{p}{p + \frac{1-p}{m}} \\
+                &= \frac{mp}{1 + p(m-1)}.
+            \end{aligned}    
+        \] For example, if there are $5$ answer choices ($m = 5$) and the student knows exactly half of the answers ($p = 1/2$) on the test, then for a given question they answered correctly, there is a $\frac{5}{6}$ probability they knew the answer.
+    \end{solution} 
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        \emph{This is a classic example of how Bayes' theorem produces sometimes surprising results.}
+
+        A laboratory blood test is 95\% effective in detecting a certain disease when it is, in fact, present. However, it also yields a ``false positive'' for about 1\% of the healthy persons who receive the test. If 0.5\% of the population actually has the disease, what is the probability that a person who receives a positive test result actually has the disease? 
+    \end{example}
+    \begin{solution}
+        Let $D$ be the event that the person tested has the disease and $T^+$ be the event that the test result is positive. Then by \nameref{bayes}, \[
+            \begin{aligned}
+                P(D \given T^+) &= \frac{P(D)P(T^+ \given D)}{P(T^+)} \\
+                &= \frac{0.005\cdot 0.95}{P(T^+)}
+            \end{aligned}
+        \] Then by \nameref{psecond}, \[
+            \begin{aligned}
+                P(T^+) &= P(D)P(T^+ \given D) + \left[ 1 - P(D) \right]P(T^+ \given D^c) \\
+                &= 0.005\cdot 0.95 + 0.995\cdot 0.01 = 1.47\% 
+            \end{aligned}
+        \] Plugging back into \nameref{bayes}, \[
+            \begin{aligned}
+                P(D \given T^+) &= \frac{P(D)P(T^+ \given D)}{P(T^+)} \\
+                &= \frac{0.005\cdot 0.95}{0.0147} \approx 32.31\%.
+            \end{aligned}
+        \] This reflects the fact that although false positives are rare, since the disease is also relatively rare, a given patient is more likely to return a false positive than a true positive, even if a positive result is overall rare. Thus the prevalence of false positives relative to true positives is greater than one might expect.
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        At a certain stage of a criminal investigation, the lead detective is 60\% convinced of the guilt of a certain suspect. Suppose, however, that a new piece of evidence shows that the criminal is left-handed. If 20\% of the population is left-handed, how certain of the guilt of the suspect should the detective be if the suspect is also left-handed? 
+    \end{example}
+    \begin{solution}
+        Let $G$ denote the event of the suspect's guilt and $L$ be the event of the suspect's left-handedness. \[
+            \begin{aligned}
+                P(G \given L) &= \frac{P(G)P(L \given G)}{P(L)} \\
+                &= \frac{0.6\cdot 1}{P(G)P(L \given G) + \left[ 1 - P(G) \right]P(L \given G^c)} \\
+                &= \frac{0.6}{0.6\cdot1 + 0.4\cdot 0.2} = \frac{0.6}{0.68} \approx 88.2\%.
+            \end{aligned}    
+        \]
+    \end{solution}
+\end{changebar}
+
+\begin{bdef}{Odds of an event}\label{odds}
+    The \textbf{odds} of an event $A$ are defined by \[
+        \frac{P(A)}{P(A^c)} = \frac{P(A)}{1 - P(A)}.
+    \] The odds of an event $A$ express how much more likely it is for $A$ to occur than it is that it does not occur. For instance, if $P(A) = 2/3$, then the odds of $A$ are $\frac{2/3}{1/3} = 2$. If the odds of a hypothesis are equal to $\alpha$, then it is common to say that the odds are ``$\alpha$ to 1'' in favor of the hypothesis.
+\end{bdef}
+\begin{bdef}{Odds given new evidence}\label{odds2}
+    Consider a hypothesis $H$ that is true with probability $P(H)$. Then suppose new evidence $E$ is introduced; then the conditional probabilities that $H$ is true and that $H$ is not true are given by \[
+        \begin{aligned}
+            P(H \given E) = \frac{P(H)P(E \given H)}{P(E)} && P(H^c \given E) = \frac{P(H^c)P(E \given H^c)}{P(E)}
+        \end{aligned},
+    \] so the new odds after the evidence $E$ has been introduced are 
+    \[
+            \frac{P(H \given E)}{P(H^c \given E)} = \frac{P(H)}{P(H^c)}\frac{P(E \given H)}{P(E \given H^c)}. 
+    \]
+    That is, the new odds are the old odds multiplied by the ratio of the conditional probability of the new evidence given that $H$ is true to the conditional probability given that $H$ is false.
+\end{bdef}
+\begin{bdef}{Law of total probability}\label{totalprob}
+    Suppose that $F_1, F_2, \dots, F_n$ are mutually exclusive events such that \[
+        \bigcup^n_{i=1} F_i = S.    
+    \] In other words, exactly one $F_i$ must occur. Then for some event $E$, \[
+        \begin{aligned}
+            P(E) &= \sum^n_{i=1} P(EF_i) \\
+            &= \sum^n_{i=1} P(F_i)P(E \given F_i).
+        \end{aligned}    
+    \] This acts as an extension of \nameref{psecond}. We can interpret it as viewing $P(E)$ as a weighted average of $P(E \given F_i)$, where each term is weighted by the probability of the event on which it is conditioned.
+\end{bdef}
+\begin{bdef}{Bayes' theorem}\label{genbayes}
+    Generalizing \nameref{bayes} using \nameref{totalprob}, given a set of mutually exclusive and exhaustive events $F_1, \dots, F_n$ and an event $E$, the probability of a given $F_j$ having occurred given that $E$ has occurred is \[
+        \begin{aligned}
+            P(F_j \given E) &= \frac{P(F_j)P(E \given F_j)}{\sum^n_{i=1}P(F_i)P(E \given F_i)}
+        \end{aligned}    
+    \] If we view the set of $F$s as being possible ``hypotheses'' before an experiment is carried out, then Bayes' theorem can be thought of as showing how opinions on each hypothesis should be modified after the experiment produces evidence $E$. 
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        A plane is missing, and it is presumed that it is equally likely to have gone down in any of 3 possible regions. Let $1 - \beta_i$, where $i$ is between 1 and 3 denote the probability that the plane will be found upon a search of the $i$th region given that the plane is actually in that region. (These constants $\beta_i$ are known as \emph{overlook probabilities}, as they represent the probability that a plane would be overlooked in a given region, for example due to geographical or environmental conditions). What is the conditional probability that the plane is in the $i$th region, given that a search of region 1 is unsuccessful?
+    \end{example}
+    \begin{solution}
+        Let $R_i$ represent the probability of the plane being in the $i$th region and $E$ be the event that a search of region 1 is unsuccessful. From \nameref{genbayes}, \[
+            \begin{aligned}
+                P(R_1 \given E) &= \frac{P(R_1)P(E \given R_1)}{\sum^3_{i=1}P(R_i)P(E \given R_i)} \\
+                &= \frac{\frac{1}{3}\cdot \beta_1}{\frac{1}{3}\cdot \beta_1 + \frac{1}{3}\cdot 1 + \frac{1}{3} \cdot 1} &= \frac{\beta_1}{\beta_1 + 2} \\
+                P(R_2 \given E) &= \frac{P(R_2)P(E \given R_2)}{\frac{1}{3}\cdot \beta_1 + \frac{1}{3}\cdot 1 + \frac{1}{3} \cdot 1} \\
+                &= \frac{\frac{1}{3}\cdot 1}{\frac{1}{3}\cdot \beta_1 + \frac{1}{3}\cdot 1 + \frac{1}{3} \cdot 1} &= \frac{1}{\beta_1 + 2} \\
+                P(R_3 \given E) &= P(R_2 \given E) &= \frac{1}{\beta_1 + 2}
+            \end{aligned}
+        \]
+    \end{solution}
+\end{changebar}
+\begin{changebar}
+    \begin{example}
+        A new couple, known to have two children, has just moved into town. Suppose one of the couple is encountered walking with one of her children. If this child is a girl, what is the probability that both children are girls?
+    \end{example}
+    \begin{solution}
+        Let $G_1$ and $G_2$ denote the probabilities that the older and younger children, respectively, are girls. Let $B_1$ and $B_2$ denote the probabilities that the older and younger children, respectively, are boys. Let $G$ and $B$ denote the probabilities that the child seen with the parent was a girl and a boy, respectively. Then we want to find $P(G_1G_2 \given G)$. By \nameref{genbayes}, \[
+            \begin{aligned}
+                P(G_1G_2 \given G) &= \frac{P(G_1G_2)P(G \given G_1G_2)}{P(G_1G_2)P(G \given G_1G_2) + P(G_1B_2)P(G \given G_1B_2) + P(B_1G_2)P(G \given B_1G_2)} \\
+                &= \frac{\frac{1}{4}\cdot 1}{\frac{1}{4}\cdot 1 + \frac{1}{4}\cdot\frac{1}{2} + \frac{1}{4}\cdot\frac{1}{2}} \\
+                &= \frac{1}{1+\frac{1}{2}+\frac{1}{2}} = \frac{1}{2}.
+            \end{aligned}    
+        \] However, this solution makes several assumptions: \begin{itemize}
+            \item The parent is equally likely to walk with either child, regardless of gender. (For example, they may be more likely to walk with a son than a daughter.)
+            \item The parent is equally likely to walk with either child, regardless of age. (For example, they may be more likely to walk with their elder child than their younger one.)
+            \item The parent is equally likely to walk with either child, regardless of the gender/age combination. (For example, if they had an elder daughter, they would be more likely to walk with her, but if they had an elder son, they would be more likely to walk with their younger child, regardless of gender.)
+        \end{itemize}
+        Thus, as stated, it is impossible to provide a full solution.
+    \end{solution}
+\end{changebar}
+\pagebreak
+\subsection{Independent events}
+\begin{bdef}{Independent events}\label{independent}
+    Two events $E$ and $F$ are said to be \textbf{independent} if the equation \[
+        P(EF) = P(E)P(F)    
+    \] holds. Two events $E$ and $F$ that are not independent are said to be \textbf{dependent}. Since this equation is symmetric, it follows that $E$ is independent of $F$ $\iff$ $F$ is independent of $E$. Note also that if $E$ and $F$ are independent, then $P(E \given F) = P(E)$ by \nameref{conpro}: \[
+        P(E \given F) = \frac{P(EF)}{P(F)} = \frac{P(E)P(F)}{P(F)} = P(E).
+    \]
+\end{bdef}
+\begin{changebar}
+    \begin{example}\label{independentdice}
+        Suppose that we toss $2$ fair dice. Let $E_1$ denote the event that the sum of the dice is $6$ and $F$ denote the event that the first die equals $4$. Then \[
+            P(E_1F) = P(\left\{ (4, 2) \right\}) = \frac{1}{36}.    
+        \] However, \[
+            P(E_1)P(F) = \left( \frac{5}{36} \right)\left( \frac{1}{6} \right) = \frac{5}{216},    
+        \] so $E_1$ and $F$ are not independent. This makes sense as the roll of the first die influences the probability of getting a roll whose sum is $6$ -- for example, if you roll a $6$ first, it is impossible to get a second roll such that their sum is $6$.
+
+        However, if we then let $E_2$ be the event that the sum of the dice is $7$, then $E_2$ is now independent of $F$: \[
+            \begin{aligned}
+                P(E_2F) &= P(\left\{ (4, 3) \right\}) = \frac{1}{36} \\
+                P(E_2)P(F) &= \left( \frac{1}{6} \right)\left( \frac{1}{6} \right) =\frac{1}{36}.
+            \end{aligned}    
+        \]
+    \end{example}
+\end{changebar}
+\begin{proposition}
+    If $E$ and $F$ are independent, then so are $E$ and $F^c$.
+\end{proposition}
+\begin{proof}
+    By \nameref{independent}, since $E$ and $F$ are independent, \[
+        P(EF) = P(E)P(F).    
+    \] Since $E = EF \cup EF^c$ and $EF$ and $EF^c$ are obviously mutually exclusive, we have by \nameref{pax3} that \[
+        \begin{aligned}
+            P(E) &= P(EF) + P(EF^c). \\
+            P(EF^c) &= P(E) - P(EF) \\
+            &= P(E) - P(E)P(F) \\
+            &= P(E)(1-P(F)) \\
+            &= P(E)P(F^c).
+        \end{aligned}
+    \]
+\end{proof}
+Now take three events $E$, $F$, and $G$. We will show that $E$ being independent of both $F$ and $G$ does not imply that $E$ is independent of $FG$ with an example:
+\begin{changebar}
+    \begin{example}
+        Two fair dice are thrown. Let $E$ be the event that the sum of the dice is $7$. Let $F$ be the event that the first die equals $4$, and let $G$ denote the event that the second die is $3$. We know from \autoref{independentdice} that $E$ is independent of both $F$ and $G$. However, clearly $E$ is not independent of $FG$, as $P(E \given FG) = 1 \neq P(E)$. 
+    \end{example}
+\end{changebar}
+\begin{bdef}{Three independent events}\label{independentthree}
+    Three events $E$, $F$, and $G$ are said to be independent if all of the following hold: \[
+        \begin{aligned}
+            P(EFG) &= P(E)P(F)P(G) \\
+            P(EF) &= P(E)P(F) \\
+            P(EG) &= P(E)P(G) \\
+            P(FG) &= P(F)P(G)
+        \end{aligned}    
+    \]
+\end{bdef}
+This has a natural extension to any amount of events:
+\begin{bdef}{Many independent events}\label{independentmany}
+    The events $E_1, E_2, \dots, E_n$ are said to be independent if for all subsets $E' \in \mathcal{P}(\left\{ E_1, E_2, \dots, E_n \right\})$, \[
+        P\left(\bigcap_{E_i \in E'}E_i\right) = \prod_{E_i \in E'}P(E_i).    
+    \]
+\end{bdef}
+\begin{bdef}{Subexperiments and trials}\label{subexperiments}
+    Sometimes, a probability experiment under consideration consists of performing a sequence of \textbf{subexperiments}. For instance, if the experiment consists of many coin flips, we may think of each flip as a subexperiment. In many cases, it is reasonable to assume that the result of any group of the subexperiments has no effect on any other subexperiments. In such a case, the subexperiments are independent.
+
+    More formally, we say that the subexperiments are independent if $E_1, E_2, \dots, E_n, \dots$ is necessarily an independent sequence of events whenever $E_i$ is an event whose occurrence is completely determined by the outcome of the $i$th subexperiment.
+
+    If each subexperiment has the same set of possible outcomes, then the subexperiments are often called \textbf{trials}.
+\end{bdef}
+\begin{changebar}
+    \begin{example}
+        An infinite sequence of independent trials is to be performed. Each trial results in a success with probability $p$ and a failure with probability $1 - p$. What is the probability that \begin{enumerate}[label=(\alph*)]
+            \item at least $1$ success occurs in the first $n$ trials;
+            \item exactly $k$ successes occur in the first $n$ trials;
+            \item all trials result in successes?
+        \end{enumerate}
+    \end{example}
+    \begin{solution}\hfill
+        \begin{enumerate}[label=(\alph*)]
+            \item We can more easily calculate the complement of our desired answer -- that no successes occur in the first $n$ trials. If we let $E_i$ denote the event of a failure on the $i$th trial, then the probability of no successes, is due to independence, \[
+                \begin{aligned}
+                    P(E_1E_2\dots E_n) &= P(E_1)P(E_2)\cdots P(E_n) \\
+                    &= (1-p)(1-p)\cdots(1-p) \\
+                    &= (1-p)^n. 
+                \end{aligned}
+            \] Then our desired probability is $1 - (1-p)^n$.
+
+            \item We start by considering any sequence of the first $n$ trials containing $k$ successes and $n - k$ failures: by \nameref{permutationsrepetition}, there are \[
+                \frac{n!}{k!(n-k)!} = {n \choose k}    
+            \] such sequences. As the trials are assumed to be independent, each sequence has a probability of $p^k(1-p)^{n-k}$ of occurring. Thus our desired probability is \[
+                {n \choose k}p^k(1-p)^{n-k}.    
+            \]
+
+            \item We can determine from part (a) that the probability of the first $n$ experiments resulting in all successes is $P(E_1^cE_2^c\cdots E_n^c) = p^n$. We can use the \hyperref[limitequiv]{continuity property of probabilities} to show that this is a decreasing sequence, and that the desired probability is \[
+                \begin{aligned}
+                    P\left( \bigcap^\infty_{i = 1} E_i^c \right) &= P\left( \lim_{n \to \infty} \bigcap^n_{i = 1} E_i^c \right) \\
+                    &= \lim_{n \to \infty} P\left( \bigcap^n_{i = 1} E_i^c \right) \\
+                    &= \lim_{n \to \infty} p^n = \begin{cases}
+                        0, & p < 1 \\
+                        1, & p = 1
+                    \end{cases}
+                \end{aligned}    
+            \]
+        \end{enumerate}
+    \end{solution}
+\end{changebar}
+
+\subsection{TODO: ADD MORE EXAMPLES}
+
+title
+
+\pagebreak
+\subsection{\texorpdfstring{$P(\given F)$ is a probability}{P(|F) is a probability}}
+\begin{proposition}
+    Conditional probabilities satisfy all the properties of ordinary properties: \begin{itemize}
+        \item \nameref{pax1}: \[
+            0 \leq P(E \given F) \leq 1    
+        \]
+        \item \nameref{pax2}: \[
+            P(S \given F) = 1    
+        \]
+        \item \nameref{pax3}: \[
+            P\left( \bigcup^\infty_{i = 1} E_i \given F \right) = \sum^\infty_{i = 1} P\left( E_i \given F \right)
+        \]
+    \end{itemize}
+\end{proposition}
+\begin{proof}\hfill
+    \begin{itemize}
+        \item \nameref{pax1}: By \nameref{conpro}, $P(E \given F) = \frac{P(EF)}{P(F)}$. Obviously this is greater than $0$; for the right-hand side, we can see that as $EF \subseteq F$, $P(EF) \leq F \leq 1$, thus $\frac{P(EF)}{P(F)} \leq 1$.
+        \item \nameref{pax2}: Again using \nameref{conpro}, \[
+            P(S \given F) = \frac{P(SF)}{P(F)} = \frac{P(F)}{P(F)} = 1.    
+        \]
+        \item \nameref{pax3}: \[
+            \begin{aligned}
+                P\left( \bigcup^\infty_{i = 1} E_i \given F \right) &= \frac{P\left( \left( \bigcup^\infty_{i = 1} E_i \right) F \right)}{P(F)} \\
+                &= \frac{P\left( \bigcup^\infty_{i = 1} E_iF \right)}{P(F)},
+            \end{aligned}
+        \]as $\left( \bigcup^\infty_{i = 1} E_i \right)F = \bigcup^\infty_{i = 1} E_iF$. \[
+            \begin{aligned}
+                \frac{P\left( \bigcup^\infty_{i = 1} E_iF \right)}{P(F)} &= \frac{\sum^\infty_{i = 1} P(E_iF)}{P(F)} \\
+                &= \sum^\infty_{i = 1} P(E_i \given F)
+            \end{aligned}
+        \]
+    \end{itemize}
+\end{proof}
+\begin{bdef}{$P(E \given F)$ as a probability function}\label{conditionalprobabilityfunction}
+    We can map an event $F$ to a function $Q(E)$: \[
+        Q(E) = P(E \given F).  
+    \]
+\end{bdef}
+As we have just proven, $Q(E)$ is a probability function on events of $S$, so all previous propositions proven for probabilities apply to $Q(E)$. For example, \[
+    Q(E_1 \cup E_2) = Q(E_1) + Q(E_2) - Q(E_1E_2),    
+\] or, equivalently, \[
+    P(E_1 \cup E_2 \given F) = P(E_1 \given F) + P(E_2 \given F) + P(E_1E_2 \given F).    
+\] Also, if we define $Q(E_1 \given E_2)$ as $\frac{Q(E_1E_2)}{Q(E_2)}$, then from \nameref{psecond}, we have \[
+    Q(E_1) = Q(E_2)Q(E_1 \given E_2) + Q(E_2^c)Q(E_1 \given E_2^c)
+\] as well as \[
+    \begin{aligned}
+        Q(E_1 \given E_2) &= \frac{Q(E_1E_2)}{Q(E_2)} \\
+        &= \frac{P(E_1E_2 \given F)}{P(E_2 \given F)} \\
+        &= \frac{\frac{P(E_1E_2F)}{P(F)}}{\frac{P(E_2F)}{P(F)}} \\
+        &= \frac{P(E_1E_2F)}{P(E_2F)} \\
+        &= P(E_1 \given E_2F).
+    \end{aligned}    
+\] Thus \[
+    \begin{aligned}
+        P(E_1 \given F) = P(E_2 \given F)P(E_1 \given E_2F) + P(E_2^c \given F)P(E_1 \given E_2^cF).-
+    \end{aligned}    
+\]
+\subsection{TODO: ADD MORE EXAMPLES}
+\begin{changebar}
+    \begin{example}
+        Consider \autoref{insuranceconditional}, which is concerned with an insurance company that believes that people can be divided into two distinct classes: those who are accident-prone and those who are not. During any given year, an accident-prone person will have an accident with probability $0.4$, whereas the corresponding figure for a person who is not prone to accidents is $0.2$. What is the conditional probability that a new policyholder will have an accident in their second year of policy ownership, given that the policyholder has had an accident in the first year?
+    \end{example}
+    \begin{solution}
+        
+    \end{solution}
+\end{changebar}
+\begin{bdef}{Conditional independence}\label{conditionalindependence}
+    We say that the events $E_1$ and $E_2$ are \textbf{conditionally independent} given $F$ if, given that $F$ occurs, the conditional probability that $E_1$ occurs is unchanged by information as to whether or not $E_2$ occurs. Formally: \[
+        P(E_1 \given E_2F) = P(E_1 \given F),    
+    \] or, equivalently, \[
+        P(E_1E_2 \given F) = P(E_2 \given F)P(E_1 \given F)    
+    \]
+\end{bdef}
+\begin{changebar}
+    \begin{example}
+        \emph{This illustrates a concept sometimes referred to as \textbf{Laplace's rule of succession}}.
+
+        There are $k+1$ coins in a box, each labeled with a number from $0$ to $k$, inclusive. When flipped, the $i$th coin will turn up heads with probability $i/k$, $i = 0, 1, \dots, k$. A coin is randomly selected from the box and then repeatedly flipped. If the first $n$ flips all result in heads, what is the conditional probability that the $(n + 1)$th flip will do the same?
+    \end{example}
+    \begin{solution}
+        Letting $H_n$ denote the event that the first $n$ flips all land heads, the desired probability is, by \nameref{bayes}, \[
+            P(H_{n+1} \given H_n) = \frac{P(H_{n+1})P(H_n \given H_{n+1})}{P(H_n)} = \frac{P(H_{n+1})}{P(H_n)}.
+        \] To compute $P(H_n)$, we must condition on which coin is chosen. By letting $C_i$ denote the event that coin $i$ is chosen, we have by \nameref{totalprob} that \[
+            P(H_n) = \sum^{k}_{i = 0}P(C_i)P(H_n \given C_i).
+        \] As the coins are selected randomly, \[
+            P(C_i) = \frac{1}{k + 1}.    
+        \] Then, given that coin $i$ has been selected, we can reasonably assume that each coin flip is independent of the others, giving us that \[
+            P(H_n \given C_i) = (i/k)^n.    
+        \] Thus \[
+            P(H_n) = \frac{1}{k+1}\sum^k_{i = 0}(i/k)^n.    
+        \] Then our final probability is \[
+            \frac{P(H_{n+1})}{P(H_n)} = \frac{\sum^k_{i = 0}(i/k)^{n+1}}{\sum^k_{i=0}(i/k)^n}
+        \]
+    \end{solution}
+\end{changebar}
+\begin{bdef}{Updating information sequentially}\label{sequentialupdate}
+    We know from \nameref{genbayes} that for $n$ mutually exclusive and exhaustive possible hypotheses $H_1, H_2, \dots, H_n$, that the probability of a given $H_i$ being the true hypothesis after the information that the event $E$ has occurred is \[
+        P(H_j \given E) = \frac{P(H_j)P(E \given H_j)}{\sum^n_{i = 1} P(H_i)P(E \given H_i)}.    
+    \] Suppose that we relabel $E$ as $E_1$ and a second piece of evidence $E_2$ has occurred; then \[
+        P(H_j \given E_1E_2) = \frac{P(H_j)P(E_1E_2 \given H_j)}{\sum^n_{i = 1} P(H_i)P(E_1E_2 \given H_i)}.    
+    \] If $E_1$ and $E_2$ are conditionally independent given each $H_j$ for $j = 1,\dots, n$, then \[
+        P(E_1E_2 \given H_j) = P(E_2 \given H_j)P(E_1 \given H_j), 1 \leq j \leq n.     
+    \] Thus \[
+        P(H_i \given E_1E_2) = \frac{P(E_2 \given H_i)P(H_i \given E_1)}{\sum^n_{j = 1}P(E_2 \given H_j)P(H_j \given E_1)}.    
+    \] This demonstrates that when continually updating the conditional probability of a hypothesis by performing conditionally independent subexperiments, it is sufficient to only save the conditional probability obtained from the previous subexperiment without keeping track of all previous results.
+\end{bdef}

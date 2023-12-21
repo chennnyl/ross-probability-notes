@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage[inline]{enumitem}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{palatino}
+\usepackage{geometry}
+\usepackage{mathtools, thmtools}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\usepackage[leftbars]{changebar}
+\geometry{dvips,left=1in,right=1in, top=1.in,bottom=1.in}
+
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue, 
+    linktocpage
+}
+
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[subsection]
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+
+\newcommand{\given}{\,\vert\,}
+
+\tcbset{colback=red!5!white, colframe=red!75!black}
+
+% \newenvironment{boxit}
+%     {\begin{center}
+%     \begin{tabular}{|p{0.9\textwidth}|}
+%     \hline\\
+%     }
+%     {
+%     \\\\\hline
+%     \end{tabular} 
+%     \end{center}
+%     }
+\newenvironment{boxit}
+    {
+        \begin{tcolorbox}[parbox=false, before upper=\vspace{-2\parskip}]\noindent
+    }
+    {
+        \end{tcolorbox}
+    }
+
+
+\newenvironment{bdef}[1]
+    {
+    \begin{boxit}
+    \begin{definition}[#1]
+    }
+    { 
+    \end{definition}
+    \end{boxit}
+    }
+
+
+\newcommand{\xor}{\oplus}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+
+\title{Notes from \emph{A First Course in Probability}}
+\author{Lynne Homann Cure}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \pagebreak
+    \tableofcontents
+    \pagebreak
+        \include{ch1}
+        \include{ch2}
+        \include{ch3}
+        \include{ch4}
+    \section{Index}
+    \listoftheorems[ignoreall, show={definition}, title={List of Definitions}]
+\end{document}

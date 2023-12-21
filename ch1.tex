@@ -1,0 +1,288 @@
+\section{Combinatorial Analysis}
+\subsection{Counting}
+
+\begin{bdef}{The basic principle of counting}
+    Suppose that two experiments are to be performed. Then, if experiment 1 can result in any one of $m$ possibilities, and if, for each outcome of experiment 1, experiment 2 can result in any one of $n$ outcomes, then together there are $mn$ possible outcomes of the two experiments.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        A small community consists of 10 women, each of whom has 3 children. If one woman and one of her children are to be chosen as mother and child of the year, how many different choices are possible?
+    \end{example}
+    \begin{solution}
+        By regarding the choice of woman as the outcome of experiment 1 and the choice of one of her children as the outcome of experiment 2, the basic principle of counting says there are $10\cdot3=30$ possible choices.
+    \end{solution}
+\end{changebar}
+
+\begin{bdef}{The generalized basic principle of counting}
+    If the experiments $e_1, e_2, \dots, e_r$ are to be performed such that $e_1$ may result in any of $n_1$ possible outcomes, $e_2$ may result in any of $n_2$ possible outcomes, etc., then there is a total of $n_1\cdot n_2 \cdot \cdots \cdot n_r$ outcomes for the $r$ experiments. 
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        A college planning committee consists of 3 freshmen, 4 sophomores, 5 juniors, and 2 seniors. A subcommittee of 4 people, consisting of 1 person from each class, is to be chosen. How many different subcommittees are possible?
+    \end{example}
+    \begin{solution}
+        By regarding the choice of a subcommittee as the combined outcome of the four separate experiments of choosing a single representative from each class, then the generalized basic principle of counting says there are $3\cdot 4 \cdot 5 \cdot 2 = 120$ possible subcommittees.
+    \end{solution}
+\end{changebar}
+    
+\begin{changebar}
+    \begin{example}
+        How many different 7-character license plates are possible if the first 3 places are to be occupied by letters and the final 4 by numbers?
+    \end{example}
+    \begin{solution}
+        $26^3 \cdot 10^4 = 175{,}760{,}000$ possible license plates.
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}\label{funccex}
+        How many functions defined on $n$ points are possible if the range of the functions is $\left\{ 0, 1 \right\}$? 
+    \end{example}
+    \begin{solution}
+        As each function can assign one of $2$ values to each of the $n$ points, the generalized basic principle of counting says there are $2^n$ possible functions.
+    \end{solution}
+\end{changebar}
+
+\pagebreak
+
+\subsection{Permutations}
+\begin{bdef}{Permutations of unique objects}
+    For $n$ unique objects, a particular ordered arrangement of the objects is known as a \textbf{permutation}. There are $n!$ unique such permutations.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        How many different batting orders are possible for a baseball team of 9 players?
+    \end{example}
+    \begin{solution}
+        $9! = 362{,}880$ possible orders.
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        A class in probability theory consists of 6 men and 4 women. After an exam, the students are ranked according to their performance. Assume that no two students obtain the same score. \begin{enumerate}[label=(\alph*)]
+            \item How many different rankings are possible?
+            \item If the men and women are ranked separately, how many different rankings are possible?
+        \end{enumerate}
+    \end{example}
+    \begin{solution}\hfill
+        \begin{enumerate}[label=(\alph*)]
+            \item Each ranking corresponds to a permutation of the students, so there are $10! = 3{,}628{,}800$ possible rankings.
+            \item There are $6! = 720$ possible rankings of the men and $4! = 24$ possible rankings of the women. From the basic principle of counting, there are then $720\cdot 24 = 17{,}280$ overall possible rankings.
+        \end{enumerate}
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        Ms. Jones has 10 books she wants to arrange on her bookshelf. Of these, 4 are math books, 3 are chemistry books, 2 are history books, and 1 is a language book. Ms. Jones wants to arrange her books so that all the books dealing with the same subject are together on the shelf. How many different arrangements are possible.
+    \end{example}
+    \begin{solution}
+        We can consider counting the possible permutations within each subject, then permute the subjects as groups on the shelf. There are $4!$ possible permutations of the math books, $3!$ permutations of the chemistry books, $2!$ permutations of the history books, and $1!$ permutations of the language book. Then there are $4!$ orderings of the subjects, each of which has $4! \cdot 3! \cdot 2! \cdot 1!$ orderings of the books within, giving us a total of $4!\cdot(4!\cdot3!\cdot2!\cdot1!) = 6{,}912$ orderings.
+    \end{solution}
+\end{changebar}
+
+\begin{bdef}{Permutations with repetition}\label{permutationsrepetition}
+    For $n$ objects, of which $n_1$ are alike, $n_2$ are alike, etc., through $n_r$ alike objects, there are \[
+        \frac{n!}{n_1!n_2!\cdots n_r!}    
+    \] unique permutations.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        A chess tournament has 10 competitors, of which 4 are Russian, 3 are from the United States, 2 are British, and 1 is Brazilian. If the tournament result lists only the nationalities of the players in the order in which they placed, how many outcomes are possible?    
+    \end{example}
+    \begin{solution}
+        There are \[
+            \frac{10!}{4!3!2!1!} = 12{,}600
+            \] possible outcomes.
+        \end{solution}
+    \end{changebar}
+
+\subsection{Combinations}
+\begin{bdef}{$n$ choose $k$}
+    We define ${n \choose k}$ (read ``$n$ choose $k$''), for $k \leq n$, as \[
+        {n \choose k} = \frac{n(n-1)(n-2)\cdots(n-k)}{k!} = \frac{n!}{k!(n-k)!}.
+    \] ${n \choose k}$ represents the number of possible unordered combinations of $n$ objects taken $k$ at a time. By convention, ${n \choose k} = 0$ when $k > n$ or $k < 0$.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        A committee of 3 people is to be formed from a group of 20 people. How many different committees are possible?
+    \end{example}
+    \begin{solution}
+        There are $\displaystyle {20 \choose 3} = \frac{20!}{3!(20-3)!} = \frac{20\cdot 19 \cdot 18}{3 \cdot 2 \cdot 1} = 1{,}140$ possible committees.
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        From a group of 5 women and 7 men, \begin{enumerate}[label=(\alph*)]
+            \item How many committees consisting of 2 women and 3 men can be formed?
+            \item What if two of the men are feuding and refuse to serve on the committee together?
+        \end{enumerate}
+    \end{example}
+    \begin{solution}\hfill
+        \begin{enumerate}[label=(\alph*)]
+            \item From the basic principle, there are $\displaystyle {5 \choose 2}{7 \choose 3} = 350$ possible committees of 2 women and 3 men.
+            \item There are $\displaystyle {7 \choose 3} = 35$ total possible groups of men. To count just the groups which contain the two feuding men, we can simply count the number of ways to group $3-2 = 1$ of the $7-2 = 5$ remaining men: $\displaystyle {5 \choose 1} = 5$. Thus, removing the groups with the feuding pair, there are $35 - 5 = 30$ valid groups of men. The number of valid groups of women has not changed, so there are $\displaystyle 30\cdot{5 \choose 2} = 300$ possible committees.
+        \end{enumerate}
+    \end{solution}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+        Consider a set of $n$ antennae, of which $m$ are defective and $n-m$ are functional. Assume that defective antennae are indistinguisible among themselves, as are functional antennae. How many orderings of the antennae are there that do not contain two consecutive defectives?
+    \end{example}
+    \begin{solution}
+        Imagine lining up the $n-m$ functional antennae. If no two defective antennae are to be consecutive, then the spaces between functional antennae must contain at most one defective antenna. Then there are $n-m+1$ possible positions between the functioning antennae, of which we must select $m$ to contain defective antennae. For example, for $n = 5$ and $m = 2$, a defective antennae could occupy any of the spots represented by a \texttt{|} in the following diagram:
+        \begin{center}
+            \texttt{|F|F|F|}
+        \end{center}
+        Then there are \[
+            {{n-m+1} \choose m}    
+            \] possible orderings in which there is at least one functional antenna between any two defective ones. 
+        \end{solution}
+\end{changebar}
+\begin{bdef}{Pascal's identity}\label{pid}
+    \[
+        {n \choose k} = {{n-1} \choose {k - 1}} + {{n - 1} \choose k}    
+    \] for $1 \leq k \leq n$.
+\end{bdef}
+\begin{proof}
+    Consider a group of $n$ objects. For a given object (say $n_i$), there are $\displaystyle {n-1 \choose k-1}$ groups of size $k$ that contain $n_i$. There are also $\displaystyle {n-1 \choose k}$ groups of size $k$ that do \emph{not} contain $n_i$. Since these two sets of groupings are disjoint and comprise every possible grouping of size $k$ for the $n$ objects, it must be the case that $\displaystyle {n \choose k} = {n-1 \choose k-1} + {n-1 \choose k}$.
+\end{proof}
+
+\begin{bdef}{Selection from categories}
+    There are \[
+        {{n+k-1} \choose k}    
+    \] ways to choose $k$ objects from $n$ different categories.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        Imagine you're shopping for ice cream. There are 5 flavors to choose from, and you want to buy 15 pints. How many different selections of ice cream can you make?
+    \end{example}
+    \begin{solution}
+        There are \[
+            {{15 + 5 - 1} \choose 15} = {19 \choose 15} = 3{,}876    
+            \] possible selections.
+        \end{solution}
+    \end{changebar}
+
+\pagebreak
+\subsection{Binomial coefficients}
+The values ${n \choose k}$ are often referred to as \emph{binomial coefficients} because of their prominence in the binomial theorem.
+\begin{bdef}{Binomial coefficients}
+    In the binomial expansion of $(a+b)^n$, the coefficient of the $k$th term (starting at $0$) is equal to $\displaystyle {n \choose k}$. Alternatively, you can consider ${n \choose k}$ to be the coefficient of the term in $(a+b)^n$ in which $b$ is raised to the power $k$.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        Consider \[
+            (a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3.    
+            \] The coefficient of the third term ($k = 2$) is $3$. ${3 \choose 2} = 3$.
+        \end{example}
+    \end{changebar}
+
+\begin{bdef}{The binomial theorem}\label{bth}
+    \[
+        \begin{aligned}
+            (x + y)^n &= \sum^n_{k = 0} {n \choose k} x^{n-k}y^k \\
+            &= \sum^n_{k=0} {n \choose k} x^ky^{n-k}
+        \end{aligned}
+    \]
+\end{bdef}
+Here are two proofs of this theorem:
+\begin{proof}
+    Proof by induction:
+    \begin{itemize}
+        \item \textbf{Base case:}
+            Let $n = 1$. Then $(x+y)^n = x + y$ and \[
+                \sum^n_{k=0}{n \choose k} x^{n-k}y^{k} = {1 \choose 0} x^{1-0}y^0 + {1 \choose 1}x^{1-1}y^1 = x + y.    
+            \]
+        \item \textbf{Inductive step:} Assume that \nameref{bth} holds for some $n-1$, where $n \geq 1$. Then \[
+            \begin{aligned}
+                (x+y)^{n} &= (x+y)(x+y)^{n-1} \\ 
+                &= (x+y)\sum^{n-1}_{k=0}{n-1 \choose k}x^{n-1-k}y^k \\
+                &= x\left(\sum^{n-1}_{k=0}{n-1 \choose k} x^{n-k-1}y^k\right) + y\left(\sum^{n-1}_{k=0}{n-1 \choose k} x^{n-1-k}y^k\right) \\
+                &= \sum^{n-1}_{k=0} {n-1 \choose k} x^{n-k}y^k + \sum^{n-1}_{k = 0}{n-1 \choose k}x^{n-k-1}y^{k+1}
+            \end{aligned}
+        \] Shift the bounds of the right sum forward by $1$ (substitute $i = k+1$): \[
+            \begin{aligned}
+                (x+y)^{n} &= \sum^{n-1}_{i=0} {n-1 \choose i}x^{n-i}y^i + \sum^{n}_{i = 1} {n-1 \choose i - 1} x^{n-i}y^i \\ 
+                &= \left( {n-1 \choose 0} x^ny^0 \right) + \sum^{n-1}_{i=1} {n-1 \choose i} x^{n-i}y^i + \left( {n - 1 \choose n - 1} x^{0}y^n \right) + \sum^{n-1}_{i=1} x^{n-i}y^i \\
+                &= x^n + y^n + \sum^{n-1}_{i=1} \left[ {n-1 \choose i-1} + {n - 1 \choose i} \right] x^{n-i}y^i,
+            \end{aligned}
+        \] which by \nameref{pid} is equal to \[
+            x^n + y^n + \sum^{n-1}_{i=i} {n \choose i} x^{n-i}y^i.
+        \] By incorporating the loose left terms and adjusting the bounds, we obtain \[
+            \sum^{n}_{i=0} {n \choose i} x^{n-i}y^i,    
+        \] as desired.
+    \end{itemize}
+\end{proof}
+\begin{proof}
+    Proof by a combinatorial argument:
+    
+    \vspace{5pt}
+    
+    \noindent Consider the product \[
+        (x_1 + y_1)(x_2 + y_2)\cdots(x_n + y_n).    
+    \] This expands to the sum of $2^n$ terms, each being the product of $n$ factors. Further, each of those $2^n$ terms will contain as a factor either $x_i$ or $y_i$ for each $i = 1, 2, \dots, n$. For example: \[
+        (x_1 + y_1)(x_2 + y_2)(x_3 + y_3) = x_1x_2x_3 + x_1x_2y_3 + x_1y_2x_3 +x_1y_2y_3 + y_1x_2x_3 + y_1x_2y_3 + y_1y_2x_3 + y_1y_2y_3.    
+    \] Now consider how many of the $2^n$ terms of this sum will have a given $k$ of the $x_i$s and $(n - k)$ of the $y_i$s as factors. This corresponds to a combination of $k$ members of the $n$ values $x_1, x_2, \dots, x_n$, so there are ${n \choose k}$ such terms. Then if we set all of the $x_i$s equal to $x$ and all of the $y_i$s equal to $y$, we can see that \[
+        (x+y)^n = \sum^n_{k=0}{n \choose k}x^ky^{n-k},   
+    \] which is the other of the two equivalent definitions of the binomial theorem from \autoref{bth}.
+\end{proof}
+
+\begin{changebar}
+    \begin{example}
+        How many subsets are there of a set $S$ containing $n$ elements?
+    \end{example}
+    \begin{solution}
+        Since there are ${n \choose k}$ subsets of size $k$, we can use the binomial theorem in a surprising way: \[
+            \sum^n_{k=0}{n \choose k} = (1 + 1)^n = 2^n.
+            \]
+            Alternatively, consider \autoref{funccex}. We can consider our $n$ points to be each element of $S$. Then, we can form a bijection between subsets of $S$ and each function as described in the problem: each function $f$ corresponds to the subset $S'$ such that $f(s) = 1 \iff s \in S'$. Proof that this is a bijection is left to the reader, but as we showed in \autoref{funccex} that there are $2^n$ such functions, there are therefore $2^n$ subsets of $S$.
+        \end{solution}
+    \end{changebar}
+
+\pagebreak
+\subsection{Multinomial coefficients}
+\begin{bdef}{Multinomial coefficients}
+    For $n_1 + n_2 + \dots + n_r = n$, we define $\displaystyle {n \choose n_1,n_2,\dots,n_r}$ to be \[
+        {n \choose n_1,n_2,\dots,n_r} = \frac{n!}{n_1!n_2!\cdots n_r!}.
+    \] ${n \choose n_1, n_2, \dots, n_r}$ represents the number of possible divisions of $n$ distinct objects into $r$ distinct groups of respective sizes $n_1, n_2, \dots, n_r$.
+\end{bdef}
+
+\begin{changebar}
+    
+    \begin{example}
+        A police department in a small city consists of 10 officers. If the department policy is to have 5 of the officers patrolling the streets, 2 of the officers working full time at the station, and 3 of the officers on reserve at the station, how many different divisions of the 10 officers into the 3 groups are possible?
+    \end{example}
+    \begin{solution}
+        There are ${10 \choose 5,2,3} = \frac{10!}{5!2!3!} = 2{,}520$ possible divisions.
+    \end{solution}
+\end{changebar}
+    
+\begin{changebar}
+    \begin{example}
+        In order to play a game of basketball, 10 children at a playground divide themselves into two teams of 5 each. How many different divisions are possible?
+    \end{example}
+    \begin{solution}
+        There are ${10 \choose 5,5} = \frac{10!}{5!5!} = 252$ possible groupings, but as the ``order'' of the two teams is irrelevant (that is, the first and second groups of 5 are non-distinct), there are actually \[
+            \frac{{10 \choose 5,5}}{2!} = \frac{252}{2} = 126    
+            \] different divisions.
+        \end{solution}
+\end{changebar}
+
+\begin{bdef}{The multinomial theorem}
+    \[\begin{aligned}
+        &(x_1+x_2+\dots+x_r)^n = \\
+        &\sum_{(n_1,\dots,n_r):\: n_1+\dots+n_r = n} {n \choose n_1,n_2,\dots,n_r} x_1^{n_1}x_2^{n_2}\dots x_r^{n_r}
+    \end{aligned}\]
+    That is, the sum is over all sets of nonnegative integer vectors $(n_1, \dots, n_r)$ such that $n_1 + n_2 + \dots + n_r = n$.
+\end{bdef}

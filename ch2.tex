@@ -1,0 +1,271 @@
+\section{Axioms of Probability}
+\subsection{Sample space and events}
+\begin{bdef}{Sample space}
+    The set of all possible outcomes for an experiment, denoted $S$, is known as the \textbf{sample space} of the experiment.
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}\label{coinssex}
+        An experiment consisting of flipping two coins has the sample space \[
+            S = \left\{ (H, H), (H, T), (T, H), (T, T) \right\}.    
+            \]
+        \end{example}
+    \end{changebar}
+
+\begin{changebar}
+    \begin{example}\label{dicessex}
+        An experiment consisting of rolling two dice has the sample space \[
+            S = \left\{ (i, j): i, j \in \left\{ 1, 2, 3, 4, 5, 6 \right\} \right\},    
+            \] where $i$ is the result of the leftmost die and $j$ is the result of the rightmost die.
+    \end{example}
+\end{changebar}
+        
+\begin{bdef}{Events}
+    Any subset $E$ of the sample space for an experiment is known as an \textbf{event}. In other words, an event is a set consisting of possible outcomes of the experiment. If the outcome of the experiment is contained in $E$, then we say that $E$ has ``occurred.''
+\end{bdef}
+
+\begin{changebar}
+    \begin{example}
+        In \autoref{coinssex}, if $E = \left\{ (H, H), (T, T) \right\}$, then $E$ is the event that the coin flips are the same.
+    \end{example}
+\end{changebar}
+
+\begin{changebar}
+    \begin{example}
+    In \autoref{dicessex}, if $E = \left\{ (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1) \right\}$, then $E$ is the event that the sum of the dice is equal to 7.
+\end{example}
+\end{changebar}
+
+\begin{bdef}{Union of events}\label{unionev}
+    For any two events $E$ and $F$ of a sample space $S$, we define the \textbf{union} of $E$ and $F$, denoted $E \cup F$, as the set of outcomes that are in contained in $E$, $F$, or both. In other words. $E \cup F$ occurs $\iff$ $E$ occurs $\vee$ $F$ occurs.
+
+    Likewise, we denote the union of more than two events $E_1, E_2, \dots, E_n$ as $\bigcup^n_{i=1}E_n$, which occurs if at least one of $E_1, E_2, \dots, E_n$ occurs.
+\end{bdef}
+\begin{bdef}{Intersection of events}\label{intev}
+    For any two events $E$ and $F$ of a sample space $S$, we define the \textbf{intersection} of $E$ and $F$, denoted $EF$ (sometimes $E \cap F$), as the set of outcomes that are contained in both $E$ and $F$. In other words, $EF$ occurs $\iff$ $E$ occurs $\wedge$ $F$ occurs.
+
+    Likewise, we denote the intersection of more than two events $E_1, E_2, \dots, E_n$ as $\bigcap^n_{i=1}E_n$, which occurs if \emph{all} of $E_1, E_2, \dots, E_n$ occur.
+\end{bdef}
+
+\begin{changebar}    
+    \begin{example}\label{coinuiex}
+        In \autoref{coinssex}, if $E = \left\{ (H, H), (H, T) \right\}$ is the event that the first coin lands heads and $F = \left\{ (T, H), (H, H) \right\}$ is the event that the second coin lands heads, then: \begin{itemize}
+            \item $E \cup F = \left\{ (H, H), (H, T), (T, H) \right\}$ is the event that at least one of the coins lands heads, and
+            \item $EF$ ($E \cap F$) $= \left\{ (H, H) \right\}$ is the event that \emph{both} coins land heads.
+        \end{itemize}
+    \end{example}
+\end{changebar}
+
+\begin{bdef}{Disjoint events}\label{disjev}
+    If two events $E$ and $F$ cannot occur simultaneously, then they are \textbf{disjoint} or \textbf{mutually exclusive}. We denote their intersection $EF$ as the null event $\varnothing$, which consists of no outcomes.
+\end{bdef}
+\begin{bdef}{Event complements}\label{compev}
+     For an event $E$ within a sample space $S$, the \textbf{complement} $E^c$ of $E$ is the set of all outcomes in $S$ that are not in $E$. That is, $E^c$ occurs $\iff$ $E$ does not occur, and $E^c$ does not occur $\iff$ $E$ occurs. Note that $S^c = \varnothing$. An event is disjoint with its complement.
+\end{bdef}
+\pagebreak
+\subsection{The three axioms of probability}
+Consider an experiment with the sample space $S$. For each event $E$ of $S$, we assume that a number $P(E)$ is defined and satisfies the following three axioms:
+\begin{boxit}
+    \begin{axiom}[Probabilities are between $0$ and $1$]\label{pax1}
+        \[
+            0 \leq P(E) \leq 1
+        \]
+    \end{axiom}
+    \begin{axiom}[The sample space has probability $1$]\label{pax2}
+        \[
+            P(S) = 1  
+        \]
+    \end{axiom}
+    \begin{axiom}[Addition rule for mutually exclusive events]\label{pax3}
+        For any sequence of mutually exclusive events $E_1, E_2, \dots$, \[
+            P\left( \bigcup^\infty_{i=1} E_i \right) = \sum^{\infty}_{i=1}P(E_i). 
+        \] In other words, the probability of at least one of a sequence of mutually exclusive events occurring is the sum of their respective probabilities.
+    \end{axiom}
+\end{boxit}
+
+\begin{bdef}{Probability}\label{pdef}
+    We refer to $P(E)$ as the \textbf{probability} of the event $E$.
+\end{bdef}
+
+Note that from \autoref{pax2} and \autoref{pax3}, $P(S \cup \varnothing) = P(S) + P(\varnothing)$, as $\varnothing = S^c$, making the two disjoint. Then $P(\varnothing) = 0$, as $P(S) = 1$. Thus for finite sequences of mutually exclusive events $E_1, E_2, \dots, E_n$, \[
+    P\left( \bigcup^n_{i=1} E_i \right) = \sum^n_{i=1} P(E_i),    
+\] by defining $E_i = \varnothing$ when $i > n$.
+
+\begin{changebar}
+\begin{example}\label{coinprobex}
+    Suppose our experiment consists of flipping a coin. If a head is equally as likely to appear as a tail, then \[
+        P(\left\{ H \right\}) = P(\left\{ T \right\}) = \frac{1}{2}.    
+    \] On the other hand, if our coin were biased, and a head were twice as likely to appear as a tail, then
+    \begin{align*}
+        P(\left\{ H \right\}) = \frac{2}{3} && P(\left\{ T \right\}) = \frac{1}{3}
+    \end{align*}    
+\end{example}
+\end{changebar}
+
+\begin{changebar}
+\begin{example}\label{dieprobex}
+    If a six-sided die is rolled, supposing that all six sides are equally likely to appear, then \[
+        P(\left\{ 1 \right\}) = P(\left\{ 2 \right\}) = P(\left\{ 3 \right\}) = P(\left\{ 4 \right\}) = P(\left\{ 5 \right\}) = P(\left\{ 6 \right\}) = \frac{1}{6}.    
+    \] From \autoref{pax3}, it follows that the probability of rolling an even number is then \[
+        P(\left\{ 2, 4, 6 \right\}) = P(\left\{ 2 \right\}) + P(\left\{ 4 \right\}) + P(\left\{ 6 \right\}) = \frac{1}{2}.    
+    \]
+\end{example}
+\end{changebar}
+
+The key assumption underlying modern probability theory is the existence of a set function $P$ defined on the events of a sample space $S$ satisfying \hyperref[pax1]{Axioms 1}, \hyperref[pax2]{2}, and \hyperref[pax3]{3}.
+
+\subsection{Simple propositions}
+\begin{proposition}[Probability of the complement]
+    \[
+        P(E^c) = 1-P(E).
+    \]
+\end{proposition}
+\begin{proposition}[Probability of subevents]
+    \[E \subseteq F \implies P(E) \leq P(F).\]
+\end{proposition}
+\begin{proposition}[Probability of the union]
+    \[
+        P(E \cup F) = P(E) + P(F) - P(EF).    
+    \]
+\end{proposition}
+\begin{proof}
+    We can write $E \cup F$ as the union of two disjoint events $E \cup E^cF$. Thus, from \autoref{pax3}, \[
+        \begin{aligned}
+            P(E \cup F) &= P(E \cup E^cF) \\
+            &= P(E) + P(E^cF).
+        \end{aligned}    
+    \] Further, since $F = EF \cup E^cF$, we again get from \autoref{pax3} \[
+        \begin{aligned}
+            P(F) &= P(EF) + P(E^cF) \\
+            P(E^cF) &= P(F) - P(EF).
+        \end{aligned}
+    \]
+\end{proof}
+
+\begin{changebar}
+\begin{example}
+    J is taking two books on vacation. There is a 0.5 probability she will like the first book, a 0.4 probability she will like the second book, and a 0.3 probability she will like both books. What is the probability she likes neither book?
+\end{example}
+\begin{solution}
+    Let $B_1$ be the event where J likes the first book and $B_2$ be the event where J likes the second book. Then the probability she will like at least one book is \[
+        P(B_1 \cup B_2) = P(B_1) + P(B_2) - P(B_1B_2) = 0.5 + 0.4 - 0.3 = 0.6.    
+    \] Since the event where J likes neither book is the complement of the one where she likes at least one of them, our result is $1 - 0.6 = 0.4$.
+\end{solution}
+\end{changebar}
+
+\begin{proposition}[The inclusion-exclusion identity]
+    \[\begin{aligned}
+        P\left(\bigcup^n_{i=1} E_i\right) = \sum^n_{i=1} P(E_i) &- \sum_{i_1 < i_2} P(E_{i_1}E_{i_2}) + \cdots \\ &+ (-1)^{r+1}\sum_{i_1 < i_2 < \dots < i_r} P(E_{i_1}E_{i_2}\cdots E_{i_r}) + \cdots \\ &+ (-1)^{n+1}P(E_1E_2\cdots E_n).
+    \end{aligned}\]
+    The summation \[
+        \sum_{i_1 < i_2 < \dots < i_r} P(E_{i_1}E_{i_2}\cdots E_{i_r})
+    \] is taken over all of the ${n \choose r}$ possible subsets of size $r$ of the set $\left\{ 1, 2, \dots, n \right\}$. In other words, the probability of the union of $n$ events is the sum of the probabilities of those events taken one at a time, minus the sum of the probabilities of the events taken two at a time, plus the sum taking them three at a time, and so on.
+\end{proposition}
+\pagebreak
+\subsection{Sample spaces having equally likely outcomes}
+Consider an experiment whose sample space $S$ is a finite set, say, $S = \left\{ 1, 2, \dots, N \right\}$. It is often natural to assume that $P(\left\{ 1 \right\}) = P(\left\{ 2 \right\}) = \cdots = P(\left\{ N \right\})$. In such a case, \[
+    \forall n \in S, P(\left\{ n \right\}) = \frac{1}{N}.
+\] It then follows that for any event $E$, \[
+    P(E) = \frac{\text{number of outcomes in $E$}}{\text{number of outcomes in $S$}}.    
+\]
+
+\begin{changebar}
+\begin{example}
+    If 3 balls are randomly drawn without substitution from a bowl containing 6 white and 5 black balls, what is the probability that one of the balls is white and the other two are black?
+\end{example}
+\begin{solution}
+    If we regard the balls as being distinguishable and the order of selection as relevant, then the sample space has $11\cdot 10 \cdot 9 = 990$ outcomes. There are then $6 \cdot 5 \cdot 4 = 120$ outcomes in which the first ball selected is white and the other two are black; $5 \cdot 6 \cdot 4 = 120$ outcomes in which the first is black, the second is white, and the third is black; and $5 \cdot 4 \cdot 6 = 120$ in which the first two are black and the third is white. Then the desired probability is \[
+        \frac{120 + 120 + 120}{990} = \frac{4}{11}.    
+    \]
+    This problem can also be solved by regarding the outcome as the unordered set of drawn balls. From this point of view, there are ${11 \choose 3} = 165$ outcomes in the sample space. Then each unordered draw corresponds to $3!$ ordered draws. Thus, if all outcomes are assumed to be equally likely when accounting for order of selection, they can also be assumed to be equally likely when discarding order. Then the desired probability is again \[
+        \frac{{6 \choose 1}{5 \choose 2}}{{11 \choose 3}} = \frac{4}{11}.    
+    \]
+\end{solution}
+\end{changebar}
+
+\begin{changebar}
+\begin{example}
+    A committee of 5 people is to be selected from a group of 6 men and 9 women. If the selection is made randomly, what is the probability that the committee consists of 3 men and 2 women?
+\end{example}
+\begin{solution}
+    Analogously to the second solution to the previous example, our probability is \[
+        \dfrac{{6 \choose 3}{9 \choose 2}}{{15 \choose 5}} = \frac{240}{1001}.
+    \]
+\end{solution}
+\end{changebar}
+
+\begin{changebar}
+\begin{example}
+    An urn contains $n$ balls, of which one is special. If $k$ of these balls are withdrawn one at a time, with each selection being equally likely to be any of the balls that remain at the time, what is the probability that the special ball is chosen?
+\end{example}
+\begin{solution}
+    \[
+        P(\left\{ \text{special ball} \right\}) = \frac{\binom{1}{1}\binom{n-1}{k-1}}{\binom{n}{k}} = \frac{k}{n}
+    \]
+\end{solution}
+\end{changebar}
+\begin{changebar}
+\begin{example}
+    If $n$ people are present in a room, what is the probability that no two of them celebrate their birthday on the same day of the year? How large need $n$ be so that this probability is less than $\frac{1}{2}$?
+\end{example}
+\begin{solution}
+    Assuming that birthdays are evenly distributed across the year (and ignoring leap years), the desired probability is \[
+        \frac{\prod^{n-1}_{i=0}(365-i)}{365^n}    
+    \] When $n \geq 23$, this probability is less than $\frac{1}{2}$.
+\end{solution}
+\end{changebar}
+
+\subsection{TODO: ADD MORE EXAMPLES}
+
+title
+
+\pagebreak
+\subsection{Probability as a continuous set function}
+\begin{bdef}{Increasing and decreasing sequences}\label{increasingdecreasing}
+    A sequence of events $\left\{ E_n, \, n \geq 1 \right\}$ is said to be an \textbf{increasing seqeuence} if \[
+        E_1 \subseteq E_2 \subseteq \cdots \subseteq E_n \subseteq E_{n+1} \subseteq \cdots,    
+    \] and is said to be a \textbf{decreasing sequence} if \[
+        E_1 \supseteq E_2 \supseteq \cdots \supseteq E_n \supseteq E_{n+1} \supseteq \cdots.
+    \]
+\end{bdef}
+\begin{bdef}{Limit of sequences}\label{limitsequences}
+    If $\left\{ E_n, \, n \geq 1 \right\}$ is an increasing sequence of events, then we define a new event, denoted by $\displaystyle \lim_{n \to \infty} E_n$ by \[
+        \lim_{n \to \infty} E_n = \bigcup^\infty_{i = 1} E_i.    
+    \] Similarly, if $\left\{ E_n \, n \geq 1 \right\}$ is a decreasing sequence of events, then we define $\displaystyle \lim_{n \to \infty} E_n$ by \[
+        \lim_{n \to \infty} E_n = \bigcap^\infty_{i = 1} E_i.    
+    \]
+\end{bdef}
+\begin{proposition}\label{limitequiv}
+    If $\left\{ E_n, \, n \geq 1 \right\}$ is an increasing or decreasing sequence of events, then \[
+        \lim_{n \to \infty} P(E_n) = P\left(\lim_{n \to \infty} E_n\right).    
+    \]
+\end{proposition}
+\begin{proof}
+    Suppose first that $\left\{ E_n, \, n \geq 1 \right\}$ is an increasing sequence. Let $F_n$, $n \geq 1$ define the events such that \[
+        \begin{aligned}
+            F_1 &= E_1 \\
+            F_n &= E_n\left( \bigcup^{n-1}_{i = 1} E_i \right)^c = E_nE_{n-1}^c, & n > 1
+        \end{aligned}
+    \] Note that we have used the fact that $E_{n-1} = \bigcup^{n-1}_{i = 1} E_i$, as the events are increasing. Thus $F_n$ consists of those outcomes in $E_n$ not contained by any earlier $E_i, \, i < n$. It is easy to see that the $F_n$ are mutually exclusive, and that \[
+        \begin{aligned}
+            \bigcup^\infty_{i = 1} F_i = \bigcup^\infty_{i = 1} E_i &\:\:\:\text{ and }& \bigcup^n_{i = 1} F_n = \bigcup^n_{i = 1} E_n, \: n \geq 1.
+        \end{aligned}
+    \] Thus \[
+        \begin{aligned}
+            P\left( \bigcup^\infty_{i = 1} E_i \right) &= P\left( \bigcup^\infty_{i = 1} P(F_i) \right) \\
+            &= \sum^\infty_{i = 1} P(F_i) & \text{(By \autoref{pax3})} \\
+            &= \lim_{n \to \infty} \sum^n_{i = 1} P(F_i) \\
+            &= \lim_{n \to \infty} P\left( \bigcup^n_{i = 1} F_i \right) \\
+            &= \lim_{n \to \infty} P\left( \bigcup^n_{i = 1} E_i \right) \\
+            &= \lim_{n \to \infty} P(E_n).
+        \end{aligned}    
+    \] Then the result is proved for increasing $\left\{ E_n, \, n \geq 1 \right\}$. Now assume that it is decreasing; then $\left\{ E_n^c, \, n \geq 1 \right\}$ is an increasing sequence. We have just proved above that then \[
+        P\left( \bigcup^\infty_{i = 1} E_i^c \right) = \lim_{n \to \infty} P(E_n^c).    
+    \] However, as $\bigcup^\infty_{i = 1} E_i^c = \left( \bigcap^\infty_{i = 1} E_i \right)^c$, it follows that \[
+        P\left( \left( \bigcap^\infty_{i = 1} E_i \right)^c \right) = \lim_{n \to \infty} P(E_n^c),    
+    \] or, equivalently, \[
+        1 - P\left( \bigcap^\infty_{i = 1} E_i \right) = \lim_{n \to \infty} \left[ 1 - P(E_n) \right] = 1 - \lim_{n \to \infty} P(E_n),    
+    \]  or \[
+        P\left( \bigcap^\infty_{i = 1} E_i \right) = \lim_{n \to \infty} P(E_n).    
+    \]
+\end{proof}

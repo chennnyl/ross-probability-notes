@@ -1,0 +1,1 @@
+Notes from *First Course in Probability*, 10th edition (2018) by Sheldon Ross. The complete PDF may be found in the `out` folder.
