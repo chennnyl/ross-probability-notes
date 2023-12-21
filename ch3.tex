@@ -52,12 +52,12 @@
 If each outcome of a finite sample space $S$ is equally likely, then if the outcome lies in a subset $F \subset S$, it is often convenient to compute conditional probabilities $P(E \given F)$ using $F$ as the sample space, as then all outcomes in $F$ are also equally likely, allowing us to avoid using the formula from \nameref{conpro} directly. \autoref{bridgeex} illustrates this technique.
 
 \begin{changebar}
-\begin{example}\label{bridgeex}
+\begin{example}[Restricting the sample space]\label{bridgeex}
     In the card game bridge, the 52 cards are dealt equally to 4 players, labeled East, West, North, and South. If North and South have a total of 8 spades among them, what is the probability that East has 3 of the remaining 5 spades?
 \end{example}
 \begin{solution}
     We can approach this problem by working with the reduced sample space. That is, given that North and South have a total of 8 spades among their 26 cards, there remain 26 cards to be distributed between East and West, exactly 5 of which are spades. Since each distribution is equally likely, then the conditional probability that East will have exactly 3 spades within their 13 cards is \[
-        \frac{{5 \choose 3}{21 \choose 10}}{{26 \choose 13}} \approx 0.339.    
+        \frac{\binom{5}{3}\binom{21}{10}}{\binom{26}{13}} \approx 0.339.    
     \] 
 \end{solution}
 \end{changebar}
@@ -100,7 +100,7 @@ If each outcome of a finite sample space $S$ is equally likely, then if the outc
                     &= \frac{8}{12}\cdot\frac{7}{11} = \frac{14}{33}.
                 \end{aligned}    
             \] This can naturally also be computed as \[
-                \frac{{8 \choose 2}}{{12 \choose 2}}.    
+                \frac{\binom{8}{2}}{\binom{12}{2}}.    
             \]
             \item We again let $R_i$ be the event that the $i$th ball chosen is red and use the formula \[
                 P(R_2R_1) = P(R_1)P(R_2\given R_1).    
@@ -251,9 +251,7 @@ Given two events $E$ and $F$, we can express $E$ as \[
 \end{changebar}
 
 \begin{changebar}
-    \begin{example}
-        \emph{This is a classic example of how Bayes' theorem produces sometimes surprising results.}
-
+    \begin{example}[Surprising results with Bayes' theorem]
         A laboratory blood test is 95\% effective in detecting a certain disease when it is, in fact, present. However, it also yields a ``false positive'' for about 1\% of the healthy persons who receive the test. If 0.5\% of the population actually has the disease, what is the probability that a person who receives a positive test result actually has the disease? 
     \end{example}
     \begin{solution}
@@ -385,7 +383,7 @@ Given two events $E$ and $F$, we can express $E$ as \[
         \]
     \end{example}
 \end{changebar}
-\begin{proposition}
+\begin{proposition}[$E$ and $F$ independent $\iff$ $E$ and $F^c$ independent]
     If $E$ and $F$ are independent, then so are $E$ and $F^c$.
 \end{proposition}
 \begin{proof}
@@ -431,7 +429,7 @@ This has a natural extension to any amount of events:
     If each subexperiment has the same set of possible outcomes, then the subexperiments are often called \textbf{trials}.
 \end{bdef}
 \begin{changebar}
-    \begin{example}
+    \begin{example}[Infinite sequence of trials]
         An infinite sequence of independent trials is to be performed. Each trial results in a success with probability $p$ and a failure with probability $1 - p$. What is the probability that \begin{enumerate}[label=(\alph*)]
             \item at least $1$ success occurs in the first $n$ trials;
             \item exactly $k$ successes occur in the first $n$ trials;
@@ -449,9 +447,9 @@ This has a natural extension to any amount of events:
             \] Then our desired probability is $1 - (1-p)^n$.
 
             \item We start by considering any sequence of the first $n$ trials containing $k$ successes and $n - k$ failures: by \nameref{permutationsrepetition}, there are \[
-                \frac{n!}{k!(n-k)!} = {n \choose k}    
+                \frac{n!}{k!(n-k)!} = \binom{n}{k}    
             \] such sequences. As the trials are assumed to be independent, each sequence has a probability of $p^k(1-p)^{n-k}$ of occurring. Thus our desired probability is \[
-                {n \choose k}p^k(1-p)^{n-k}.    
+                \binom{n}{k}p^k(1-p)^{n-k}.    
             \]
 
             \item We can determine from part (a) that the probability of the first $n$ experiments resulting in all successes is $P(E_1^cE_2^c\cdots E_n^c) = p^n$. We can use the \hyperref[limitequiv]{continuity property of probabilities} to show that this is a decreasing sequence, and that the desired probability is \[
@@ -474,7 +472,7 @@ title
 
 \pagebreak
 \subsection{\texorpdfstring{$P(\given F)$ is a probability}{P(|F) is a probability}}
-\begin{proposition}
+\begin{proposition}[Conditional probabilities are ordinary probabilities]
     Conditional probabilities satisfy all the properties of ordinary properties: \begin{itemize}
         \item \nameref{pax1}: \[
             0 \leq P(E \given F) \leq 1    
@@ -547,9 +545,7 @@ As we have just proven, $Q(E)$ is a probability function on events of $S$, so al
     \]
 \end{bdef}
 \begin{changebar}
-    \begin{example}
-        \emph{This illustrates a concept sometimes referred to as \textbf{Laplace's rule of succession}}.
-
+    \begin{example}[Laplace's rule of succession]
         There are $k+1$ coins in a box, each labeled with a number from $0$ to $k$, inclusive. When flipped, the $i$th coin will turn up heads with probability $i/k$, $i = 0, 1, \dots, k$. A coin is randomly selected from the box and then repeatedly flipped. If the first $n$ flips all result in heads, what is the conditional probability that the $(n + 1)$th flip will do the same?
     \end{example}
     \begin{solution}

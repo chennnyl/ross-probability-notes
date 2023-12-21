@@ -6,6 +6,7 @@
 \usepackage{geometry}
 \usepackage{mathtools, thmtools}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepackage{tcolorbox}
 \usepackage[leftbars]{changebar}
 \geometry{dvips,left=1in,right=1in, top=1.in,bottom=1.in}
@@ -38,6 +39,9 @@
 
 \theoremstyle{remark}
 \newtheorem*{solution}{Solution}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\SD}{SD}
 
 \newcommand{\given}{\,\vert\,}
 
@@ -87,6 +91,8 @@
 \begin{document}
     \maketitle
     \pagebreak
+    \setcounter{section}{-1}
+    \section{Table of Contents}
     \tableofcontents
     \pagebreak
         \include{ch1}
@@ -94,5 +100,7 @@
         \include{ch3}
         \include{ch4}
     \section{Index}
-    \listoftheorems[ignoreall, show={definition}, title={List of Definitions}]
+    \listoftheorems[ignoreall, show={definition,proposition}, title={List of Definitions and Propositions}]
+    \pagebreak
+    \listoftheorems[ignoreall, onlynamed={example}, title={List of Useful Examples}]
 \end{document}

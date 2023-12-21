@@ -159,7 +159,7 @@ The key assumption underlying modern probability theory is the existence of a se
     \end{aligned}\]
     The summation \[
         \sum_{i_1 < i_2 < \dots < i_r} P(E_{i_1}E_{i_2}\cdots E_{i_r})
-    \] is taken over all of the ${n \choose r}$ possible subsets of size $r$ of the set $\left\{ 1, 2, \dots, n \right\}$. In other words, the probability of the union of $n$ events is the sum of the probabilities of those events taken one at a time, minus the sum of the probabilities of the events taken two at a time, plus the sum taking them three at a time, and so on.
+    \] is taken over all of the $\binom{n}{r}$ possible subsets of size $r$ of the set $\left\{ 1, 2, \dots, n \right\}$. In other words, the probability of the union of $n$ events is the sum of the probabilities of those events taken one at a time, minus the sum of the probabilities of the events taken two at a time, plus the sum taking them three at a time, and so on.
 \end{proposition}
 \pagebreak
 \subsection{Sample spaces having equally likely outcomes}
@@ -177,8 +177,8 @@ Consider an experiment whose sample space $S$ is a finite set, say, $S = \left\{
     If we regard the balls as being distinguishable and the order of selection as relevant, then the sample space has $11\cdot 10 \cdot 9 = 990$ outcomes. There are then $6 \cdot 5 \cdot 4 = 120$ outcomes in which the first ball selected is white and the other two are black; $5 \cdot 6 \cdot 4 = 120$ outcomes in which the first is black, the second is white, and the third is black; and $5 \cdot 4 \cdot 6 = 120$ in which the first two are black and the third is white. Then the desired probability is \[
         \frac{120 + 120 + 120}{990} = \frac{4}{11}.    
     \]
-    This problem can also be solved by regarding the outcome as the unordered set of drawn balls. From this point of view, there are ${11 \choose 3} = 165$ outcomes in the sample space. Then each unordered draw corresponds to $3!$ ordered draws. Thus, if all outcomes are assumed to be equally likely when accounting for order of selection, they can also be assumed to be equally likely when discarding order. Then the desired probability is again \[
-        \frac{{6 \choose 1}{5 \choose 2}}{{11 \choose 3}} = \frac{4}{11}.    
+    This problem can also be solved by regarding the outcome as the unordered set of drawn balls. From this point of view, there are $\binom{11}{3} = 165$ outcomes in the sample space. Then each unordered draw corresponds to $3!$ ordered draws. Thus, if all outcomes are assumed to be equally likely when accounting for order of selection, they can also be assumed to be equally likely when discarding order. Then the desired probability is again \[
+        \frac{\binom{6}{1}\binom{5}{2}}{\binom{11}{3}} = \frac{4}{11}.    
     \]
 \end{solution}
 \end{changebar}
@@ -189,7 +189,7 @@ Consider an experiment whose sample space $S$ is a finite set, say, $S = \left\{
 \end{example}
 \begin{solution}
     Analogously to the second solution to the previous example, our probability is \[
-        \dfrac{{6 \choose 3}{9 \choose 2}}{{15 \choose 5}} = \frac{240}{1001}.
+        \dfrac{\binom{6}{3}\binom{9}{2}}{\binom{15}{5}} = \frac{240}{1001}.
     \]
 \end{solution}
 \end{changebar}
@@ -235,7 +235,7 @@ title
         \lim_{n \to \infty} E_n = \bigcap^\infty_{i = 1} E_i.    
     \]
 \end{bdef}
-\begin{proposition}\label{limitequiv}
+\begin{proposition}[Limit equivalence]\label{limitequiv}
     If $\left\{ E_n, \, n \geq 1 \right\}$ is an increasing or decreasing sequence of events, then \[
         \lim_{n \to \infty} P(E_n) = P\left(\lim_{n \to \infty} E_n\right).    
     \]

@@ -104,9 +104,9 @@
 
 \subsection{Combinations}
 \begin{bdef}{$n$ choose $k$}
-    We define ${n \choose k}$ (read ``$n$ choose $k$''), for $k \leq n$, as \[
-        {n \choose k} = \frac{n(n-1)(n-2)\cdots(n-k)}{k!} = \frac{n!}{k!(n-k)!}.
-    \] ${n \choose k}$ represents the number of possible unordered combinations of $n$ objects taken $k$ at a time. By convention, ${n \choose k} = 0$ when $k > n$ or $k < 0$.
+    We define $\binom{n}{k}$ (read ``$n$ choose $k$''), for $k \leq n$, as \[
+        \binom{n}{k} = \frac{n(n-1)(n-2)\cdots(n-k)}{k!} = \frac{n!}{k!(n-k)!}.
+    \] $\binom{n}{k}$ represents the number of possible unordered combinations of $n$ objects taken $k$ at a time. By convention, $\binom{n}{k} = 0$ when $k > n$ or $k < 0$.
 \end{bdef}
 
 \begin{changebar}
@@ -114,7 +114,7 @@
         A committee of 3 people is to be formed from a group of 20 people. How many different committees are possible?
     \end{example}
     \begin{solution}
-        There are $\displaystyle {20 \choose 3} = \frac{20!}{3!(20-3)!} = \frac{20\cdot 19 \cdot 18}{3 \cdot 2 \cdot 1} = 1{,}140$ possible committees.
+        There are $\displaystyle \binom{20}{3} = \frac{20!}{3!(20-3)!} = \frac{20\cdot 19 \cdot 18}{3 \cdot 2 \cdot 1} = 1{,}140$ possible committees.
     \end{solution}
 \end{changebar}
 
@@ -127,8 +127,8 @@
     \end{example}
     \begin{solution}\hfill
         \begin{enumerate}[label=(\alph*)]
-            \item From the basic principle, there are $\displaystyle {5 \choose 2}{7 \choose 3} = 350$ possible committees of 2 women and 3 men.
-            \item There are $\displaystyle {7 \choose 3} = 35$ total possible groups of men. To count just the groups which contain the two feuding men, we can simply count the number of ways to group $3-2 = 1$ of the $7-2 = 5$ remaining men: $\displaystyle {5 \choose 1} = 5$. Thus, removing the groups with the feuding pair, there are $35 - 5 = 30$ valid groups of men. The number of valid groups of women has not changed, so there are $\displaystyle 30\cdot{5 \choose 2} = 300$ possible committees.
+            \item From the basic principle, there are $\displaystyle \binom{5}{2}\binom{7}{3} = 350$ possible committees of 2 women and 3 men.
+            \item There are $\displaystyle \binom{7}{3} = 35$ total possible groups of men. To count just the groups which contain the two feuding men, we can simply count the number of ways to group $3-2 = 1$ of the $7-2 = 5$ remaining men: $\displaystyle \binom{5}{1} = 5$. Thus, removing the groups with the feuding pair, there are $35 - 5 = 30$ valid groups of men. The number of valid groups of women has not changed, so there are $\displaystyle 30\cdot\binom{5}{2} = 300$ possible committees.
         \end{enumerate}
     \end{solution}
 \end{changebar}
@@ -143,22 +143,22 @@
             \texttt{|F|F|F|}
         \end{center}
         Then there are \[
-            {{n-m+1} \choose m}    
+            \binom{n-m+1}{m}    
             \] possible orderings in which there is at least one functional antenna between any two defective ones. 
         \end{solution}
 \end{changebar}
 \begin{bdef}{Pascal's identity}\label{pid}
     \[
-        {n \choose k} = {{n-1} \choose {k - 1}} + {{n - 1} \choose k}    
+        \binom{n}{k} = \binom{n-1}{k - 1} + \binom{n - 1}{k}    
     \] for $1 \leq k \leq n$.
 \end{bdef}
 \begin{proof}
-    Consider a group of $n$ objects. For a given object (say $n_i$), there are $\displaystyle {n-1 \choose k-1}$ groups of size $k$ that contain $n_i$. There are also $\displaystyle {n-1 \choose k}$ groups of size $k$ that do \emph{not} contain $n_i$. Since these two sets of groupings are disjoint and comprise every possible grouping of size $k$ for the $n$ objects, it must be the case that $\displaystyle {n \choose k} = {n-1 \choose k-1} + {n-1 \choose k}$.
+    Consider a group of $n$ objects. For a given object (say $n_i$), there are $\displaystyle \binom{n-1}{k-1}$ groups of size $k$ that contain $n_i$. There are also $\displaystyle \binom{n-1}{k}$ groups of size $k$ that do \emph{not} contain $n_i$. Since these two sets of groupings are disjoint and comprise every possible grouping of size $k$ for the $n$ objects, it must be the case that $\displaystyle \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
 \end{proof}
 
 \begin{bdef}{Selection from categories}
     There are \[
-        {{n+k-1} \choose k}    
+        \binom{n+k-1}{k}    
     \] ways to choose $k$ objects from $n$ different categories.
 \end{bdef}
 
@@ -168,31 +168,31 @@
     \end{example}
     \begin{solution}
         There are \[
-            {{15 + 5 - 1} \choose 15} = {19 \choose 15} = 3{,}876    
+            \binom{15 + 5 - 1}{15} = \binom{19}{15} = 3{,}876    
             \] possible selections.
         \end{solution}
     \end{changebar}
 
 \pagebreak
 \subsection{Binomial coefficients}
-The values ${n \choose k}$ are often referred to as \emph{binomial coefficients} because of their prominence in the binomial theorem.
+The values $\binom{n}{k}$ are often referred to as \emph{binomial coefficients} because of their prominence in the binomial theorem.
 \begin{bdef}{Binomial coefficients}
-    In the binomial expansion of $(a+b)^n$, the coefficient of the $k$th term (starting at $0$) is equal to $\displaystyle {n \choose k}$. Alternatively, you can consider ${n \choose k}$ to be the coefficient of the term in $(a+b)^n$ in which $b$ is raised to the power $k$.
+    In the binomial expansion of $(a+b)^n$, the coefficient of the $k$th term (starting at $0$) is equal to $\displaystyle \binom{n}{k}$. Alternatively, you can consider $\binom{n}{k}$ to be the coefficient of the term in $(a+b)^n$ in which $b$ is raised to the power $k$.
 \end{bdef}
 
 \begin{changebar}
     \begin{example}
         Consider \[
             (a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3.    
-            \] The coefficient of the third term ($k = 2$) is $3$. ${3 \choose 2} = 3$.
+            \] The coefficient of the third term ($k = 2$) is $3$. $\binom{3}{2} = 3$.
         \end{example}
     \end{changebar}
 
 \begin{bdef}{The binomial theorem}\label{bth}
     \[
         \begin{aligned}
-            (x + y)^n &= \sum^n_{k = 0} {n \choose k} x^{n-k}y^k \\
-            &= \sum^n_{k=0} {n \choose k} x^ky^{n-k}
+            (x + y)^n &= \sum^n_{k = 0} \binom{n}{k} x^{n-k}y^k \\
+            &= \sum^n_{k=0} \binom{n}{k} x^ky^{n-k}
         \end{aligned}
     \]
 \end{bdef}
@@ -202,25 +202,25 @@ Here are two proofs of this theorem:
     \begin{itemize}
         \item \textbf{Base case:}
             Let $n = 1$. Then $(x+y)^n = x + y$ and \[
-                \sum^n_{k=0}{n \choose k} x^{n-k}y^{k} = {1 \choose 0} x^{1-0}y^0 + {1 \choose 1}x^{1-1}y^1 = x + y.    
+                \sum^n_{k=0}\binom{n}{k} x^{n-k}y^{k} = \binom{1}{0} x^{1-0}y^0 + \binom{1}{1}x^{1-1}y^1 = x + y.    
             \]
         \item \textbf{Inductive step:} Assume that \nameref{bth} holds for some $n-1$, where $n \geq 1$. Then \[
             \begin{aligned}
                 (x+y)^{n} &= (x+y)(x+y)^{n-1} \\ 
-                &= (x+y)\sum^{n-1}_{k=0}{n-1 \choose k}x^{n-1-k}y^k \\
-                &= x\left(\sum^{n-1}_{k=0}{n-1 \choose k} x^{n-k-1}y^k\right) + y\left(\sum^{n-1}_{k=0}{n-1 \choose k} x^{n-1-k}y^k\right) \\
-                &= \sum^{n-1}_{k=0} {n-1 \choose k} x^{n-k}y^k + \sum^{n-1}_{k = 0}{n-1 \choose k}x^{n-k-1}y^{k+1}
+                &= (x+y)\sum^{n-1}_{k=0}\binom{n-1}{k}x^{n-1-k}y^k \\
+                &= x\left(\sum^{n-1}_{k=0}\binom{n-1}{k} x^{n-k-1}y^k\right) + y\left(\sum^{n-1}_{k=0}\binom{n-1}{k} x^{n-1-k}y^k\right) \\
+                &= \sum^{n-1}_{k=0} \binom{n-1}{k} x^{n-k}y^k + \sum^{n-1}_{k = 0}\binom{n-1}{k}x^{n-k-1}y^{k+1}
             \end{aligned}
         \] Shift the bounds of the right sum forward by $1$ (substitute $i = k+1$): \[
             \begin{aligned}
-                (x+y)^{n} &= \sum^{n-1}_{i=0} {n-1 \choose i}x^{n-i}y^i + \sum^{n}_{i = 1} {n-1 \choose i - 1} x^{n-i}y^i \\ 
-                &= \left( {n-1 \choose 0} x^ny^0 \right) + \sum^{n-1}_{i=1} {n-1 \choose i} x^{n-i}y^i + \left( {n - 1 \choose n - 1} x^{0}y^n \right) + \sum^{n-1}_{i=1} x^{n-i}y^i \\
-                &= x^n + y^n + \sum^{n-1}_{i=1} \left[ {n-1 \choose i-1} + {n - 1 \choose i} \right] x^{n-i}y^i,
+                (x+y)^{n} &= \sum^{n-1}_{i=0} \binom{n-1}{i}x^{n-i}y^i + \sum^{n}_{i = 1} \binom{n-1}{i - 1} x^{n-i}y^i \\ 
+                &= \left( \binom{n-1}{0} x^ny^0 \right) + \sum^{n-1}_{i=1} \binom{n-1}{i} x^{n-i}y^i + \left( \binom{n - 1}{n - 1} x^{0}y^n \right) + \sum^{n-1}_{i=1} x^{n-i}y^i \\
+                &= x^n + y^n + \sum^{n-1}_{i=1} \left[ \binom{n-1}{i-1} + \binom{n - 1}{i} \right] x^{n-i}y^i,
             \end{aligned}
         \] which by \nameref{pid} is equal to \[
-            x^n + y^n + \sum^{n-1}_{i=i} {n \choose i} x^{n-i}y^i.
+            x^n + y^n + \sum^{n-1}_{i=i} \binom{n}{i} x^{n-i}y^i.
         \] By incorporating the loose left terms and adjusting the bounds, we obtain \[
-            \sum^{n}_{i=0} {n \choose i} x^{n-i}y^i,    
+            \sum^{n}_{i=0} \binom{n}{i} x^{n-i}y^i,    
         \] as desired.
     \end{itemize}
 \end{proof}
@@ -233,8 +233,8 @@ Here are two proofs of this theorem:
         (x_1 + y_1)(x_2 + y_2)\cdots(x_n + y_n).    
     \] This expands to the sum of $2^n$ terms, each being the product of $n$ factors. Further, each of those $2^n$ terms will contain as a factor either $x_i$ or $y_i$ for each $i = 1, 2, \dots, n$. For example: \[
         (x_1 + y_1)(x_2 + y_2)(x_3 + y_3) = x_1x_2x_3 + x_1x_2y_3 + x_1y_2x_3 +x_1y_2y_3 + y_1x_2x_3 + y_1x_2y_3 + y_1y_2x_3 + y_1y_2y_3.    
-    \] Now consider how many of the $2^n$ terms of this sum will have a given $k$ of the $x_i$s and $(n - k)$ of the $y_i$s as factors. This corresponds to a combination of $k$ members of the $n$ values $x_1, x_2, \dots, x_n$, so there are ${n \choose k}$ such terms. Then if we set all of the $x_i$s equal to $x$ and all of the $y_i$s equal to $y$, we can see that \[
-        (x+y)^n = \sum^n_{k=0}{n \choose k}x^ky^{n-k},   
+    \] Now consider how many of the $2^n$ terms of this sum will have a given $k$ of the $x_i$s and $(n - k)$ of the $y_i$s as factors. This corresponds to a combination of $k$ members of the $n$ values $x_1, x_2, \dots, x_n$, so there are $\binom{n}{k}$ such terms. Then if we set all of the $x_i$s equal to $x$ and all of the $y_i$s equal to $y$, we can see that \[
+        (x+y)^n = \sum^n_{k=0}\binom{n}{k}x^ky^{n-k},   
     \] which is the other of the two equivalent definitions of the binomial theorem from \autoref{bth}.
 \end{proof}
 
@@ -243,8 +243,8 @@ Here are two proofs of this theorem:
         How many subsets are there of a set $S$ containing $n$ elements?
     \end{example}
     \begin{solution}
-        Since there are ${n \choose k}$ subsets of size $k$, we can use the binomial theorem in a surprising way: \[
-            \sum^n_{k=0}{n \choose k} = (1 + 1)^n = 2^n.
+        Since there are $\binom{n}{k}$ subsets of size $k$, we can use the binomial theorem in a surprising way: \[
+            \sum^n_{k=0}\binom{n}{k} = (1 + 1)^n = 2^n.
             \]
             Alternatively, consider \autoref{funccex}. We can consider our $n$ points to be each element of $S$. Then, we can form a bijection between subsets of $S$ and each function as described in the problem: each function $f$ corresponds to the subset $S'$ such that $f(s) = 1 \iff s \in S'$. Proof that this is a bijection is left to the reader, but as we showed in \autoref{funccex} that there are $2^n$ such functions, there are therefore $2^n$ subsets of $S$.
         \end{solution}
@@ -253,9 +253,9 @@ Here are two proofs of this theorem:
 \pagebreak
 \subsection{Multinomial coefficients}
 \begin{bdef}{Multinomial coefficients}
-    For $n_1 + n_2 + \dots + n_r = n$, we define $\displaystyle {n \choose n_1,n_2,\dots,n_r}$ to be \[
-        {n \choose n_1,n_2,\dots,n_r} = \frac{n!}{n_1!n_2!\cdots n_r!}.
-    \] ${n \choose n_1, n_2, \dots, n_r}$ represents the number of possible divisions of $n$ distinct objects into $r$ distinct groups of respective sizes $n_1, n_2, \dots, n_r$.
+    For $n_1 + n_2 + \dots + n_r = n$, we define $\displaystyle \binom{n}{n_1,n_2,\dots,n_r}$ to be \[
+        \binom{n}{n_1,n_2,\dots,n_r} = \frac{n!}{n_1!n_2!\cdots n_r!}.
+    \] $\binom{n}{n_1, n_2, \dots, n_r}$ represents the number of possible divisions of $n$ distinct objects into $r$ distinct groups of respective sizes $n_1, n_2, \dots, n_r$.
 \end{bdef}
 
 \begin{changebar}
@@ -264,7 +264,7 @@ Here are two proofs of this theorem:
         A police department in a small city consists of 10 officers. If the department policy is to have 5 of the officers patrolling the streets, 2 of the officers working full time at the station, and 3 of the officers on reserve at the station, how many different divisions of the 10 officers into the 3 groups are possible?
     \end{example}
     \begin{solution}
-        There are ${10 \choose 5,2,3} = \frac{10!}{5!2!3!} = 2{,}520$ possible divisions.
+        There are $\binom{10}{5,2,3} = \frac{10!}{5!2!3!} = 2{,}520$ possible divisions.
     \end{solution}
 \end{changebar}
     
@@ -273,8 +273,8 @@ Here are two proofs of this theorem:
         In order to play a game of basketball, 10 children at a playground divide themselves into two teams of 5 each. How many different divisions are possible?
     \end{example}
     \begin{solution}
-        There are ${10 \choose 5,5} = \frac{10!}{5!5!} = 252$ possible groupings, but as the ``order'' of the two teams is irrelevant (that is, the first and second groups of 5 are non-distinct), there are actually \[
-            \frac{{10 \choose 5,5}}{2!} = \frac{252}{2} = 126    
+        There are $\binom{10}{5,5} = \frac{10!}{5!5!} = 252$ possible groupings, but as the ``order'' of the two teams is irrelevant (that is, the first and second groups of 5 are non-distinct), there are actually \[
+            \frac{\binom{10}{5,5}}{2!} = \frac{252}{2} = 126    
             \] different divisions.
         \end{solution}
 \end{changebar}
@@ -282,7 +282,7 @@ Here are two proofs of this theorem:
 \begin{bdef}{The multinomial theorem}
     \[\begin{aligned}
         &(x_1+x_2+\dots+x_r)^n = \\
-        &\sum_{(n_1,\dots,n_r):\: n_1+\dots+n_r = n} {n \choose n_1,n_2,\dots,n_r} x_1^{n_1}x_2^{n_2}\dots x_r^{n_r}
+        &\sum_{(n_1,\dots,n_r):\: n_1+\dots+n_r = n} \binom{n}{n_1,n_2,\dots,n_r} x_1^{n_1}x_2^{n_2}\dots x_r^{n_r}
     \end{aligned}\]
     That is, the sum is over all sets of nonnegative integer vectors $(n_1, \dots, n_r)$ such that $n_1 + n_2 + \dots + n_r = n$.
 \end{bdef}
